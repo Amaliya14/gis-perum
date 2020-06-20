@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Auth;
 use App\Perumahan;
+use App\Kecamatan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -31,7 +32,8 @@ class PerumahanController extends Controller
      */
     public function create()
     {
-        return view('admin.perumahan.create');
+        $kecamatan = Kecamatan::orderBy('kecamatan','ASC')->get();
+        return view('admin.perumahan.create', compact('kecamatan'));
     }
 
     /**
