@@ -39,13 +39,14 @@
           <thead>
             <tr>
                     <th>No.</th>
+                    <th>Gambar</th>
                     <th>Perumahan</th>
                     <th width="15%">Lokasi</th>
                     <th>Kecamatan</th>  
                     <th>Jumlah Rumah</th>
                     <th>Luas Bangunan</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
+                   <!--  <th>Latitude</th>
+                    <th>Longitude</th> -->
                     <th width="15%">Action</th>
                 </tr>
                 </thead>
@@ -54,25 +55,46 @@
                 @foreach($perumahan as $perumahan)
                     <tr>
                         <td>{{ $no++ }}</td>
+                        <td><img src="{{asset('/picture/'.$perumahan->gambar)}}" width="100px" height="100px"></td>
                         <td>{{ $perumahan->nama_perumahan }}</td>
                         <td>{{ $perumahan->lokasi }}</td>
                         <td>{{ $perumahan->kecamatan }}</td>
-                        <td>{{ $perumahan->jumlah_rumah }}</td>
-                        <td>{{ $perumahan->luas_lahan_bangunan }}</td>
-                        <td>{{ $perumahan->latitude }}</td>
-                        <td>{{ $perumahan->longitude }}</td>
+                        <td>{{ $perumahan->jumlah_rumah }} Unit</td>
+                        <td>{{ $perumahan->luas_lahan_bangunan }} M<sup>2</sup></td>
+                       <!--  <td>{{ $perumahan->latitude }}</td>
+                        <td>{{ $perumahan->longitude }}</td> -->
                         <td>
+                  <a class="btn btn-warning glyphicon glyphicon-pencil" type="button" href="{{ url('admin/edit', $perumahan->id) }}"></a>
 
-                <form action="{{ url('admin/destroy', $perumahan->id) }}" method="post">
-                
-                <a class="btn btn-warning glyphicon glyphicon-pencil" type="button" href="{{ url('admin/edit', $perumahan->id) }}"></a>
+             
+                    <button class="btn btn-danger glyphicon glyphicon-trash" type="button" data-toggle="modal" data-target="#hapus{{$perumahan->id}}"></button>
 
-                @csrf
-                    <button class="btn btn-danger glyphicon glyphicon-trash" type="submit" onclick="return confirm('Yakin ingin menghapus data?')"></button>
+                    <div class="modal fade" id="hapus{{$perumahan->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Hapus Perumahan</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form method="post" action="{{route('admin.destroy', $perumahan->id)}}">
+                          @csrf
+                          @method('DELETE')
+                        <div class="modal-body">
+                          Hapus Perumahan {{$perumahan->nama_perumahan}} ?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                          <button type="submit" class="btn btn-danger">Hapus</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </td>
               </tr>
              @endforeach
-           </form>
             </tbody>
         </table>
     </td>

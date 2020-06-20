@@ -7,6 +7,7 @@ use App\Perumahan;
 use App\Kecamatan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Storage;
 
 class PerumahanController extends Controller
 {
@@ -44,18 +45,32 @@ class PerumahanController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+
         $request->validate([
             'nama_perumahan' => 'required',
             'lokasi' => 'required',
             'kecamatan' => 'required',
             'jumlah_rumah' => 'required',
             'luas_lahan_bangunan' => 'required',
+            'gambar' => 'required|image|max:2000',
             'latitude' => 'required',
             'longitude' => 'required',
-
         ]);
-  
-        Perumahan::create($request->all());
+        
+        $gambar = $request->file('gambar')->store('perumahan');
+
+        Perumahan::create([
+            'nama_perumahan' => $request->nama_perumahan,
+            'lokasi' => $request->lokasi,
+            'kecamatan' => $request->kecamatan,
+            'jumlah_rumah' => $request->jumlah_rumah,
+            'luas_lahan_bangunan' => $request->luas_lahan_bangunan,
+            'gambar' => $gambar,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude
+        ]);
+        // Perumahan::create($request->all());
 
         //return redirect()->back();
 
@@ -131,8 +146,15 @@ class PerumahanController extends Controller
     public function destroy($id)
     {
         $perumahan = Perumahan::find($id);
+        // dd($perumahan);
+        
+        $gambar = $perumahan->gambar;
+        if (Storage::exists($gambar)) {
+          Storage::delete($gambar);
+        }
+
         $perumahan->delete();
 
-         return redirect('admin/perumahan')->with('success', 'Data berhasil dihapus!');
+        return redirect('admin/perumahan')->with('success', 'Data berhasil dihapus!');
     }
 }

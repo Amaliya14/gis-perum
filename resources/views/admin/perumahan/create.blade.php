@@ -8,7 +8,7 @@
     <div class="container">
       <h2><i>Tambah Data Perumahan</i></h2>
       <br/>
-      <form action="{{url('admin/simpan')}}" method="post">
+      <form action="{{url('admin/simpan')}}" method="post" enctype="multipart/form-data" >
         <div class="col-md-11">
         @csrf
         <div class="form-group">

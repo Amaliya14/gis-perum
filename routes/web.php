@@ -42,7 +42,7 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::post('simpan','Admin\PerumahanController@store')->name('admin.simpan');
 	Route::get('edit/{id}', 'Admin\PerumahanController@edit')->name('admin.edit');
     Route::post('update/{id}','Admin\PerumahanController@update')->name('admin.update');
-    Route::post('destroy/{id}','Admin\PerumahanController@destroy')->name('admin.destroy');
+    Route::delete('destroy/{id}','Admin\PerumahanController@destroy')->name('admin.destroy');
 
 
 });

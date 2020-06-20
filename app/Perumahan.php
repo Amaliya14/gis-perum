@@ -8,5 +8,5 @@ class Perumahan extends Model
 {
     protected $table = 'perumahan';
     protected $guarded = [];
-    protected $fillable = ['nama_perumahan', 'lokasi', 'kecamatan', 'jumlah_rumah', 'luas_lahan_bangunan', 'latitude', 'longitude', 'foto'];
+    protected $fillable = ['nama_perumahan', 'lokasi', 'kecamatan', 'jumlah_rumah', 'luas_lahan_bangunan', 'latitude', 'longitude', 'gambar'];
 }

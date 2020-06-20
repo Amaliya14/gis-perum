@@ -20,6 +20,7 @@ class CreatePerumahanTable extends Migration
             $table->string('kecamatan');
             $table->string('jumlah_rumah');
             $table->string('luas_lahan_bangunan');
+            $table->string('gambar');
             $table->float('latitude');
             $table->float('longitude');
             $table->timestamps();
