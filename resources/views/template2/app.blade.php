@@ -49,11 +49,7 @@
   <div class="content-wrapper">
     @yield('content')
 
-      </div>
-      <!-- /.row (main row) -->
-
-    </section>
-    <!-- /.content -->
+    
   </div>
   <!-- /.content-wrapper -->
   @include('template2.footer')

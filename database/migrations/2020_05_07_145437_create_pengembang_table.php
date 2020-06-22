@@ -15,12 +15,15 @@ class CreatePengembangTable extends Migration
     {
         Schema::create('pengembang', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('id_perumahan')->unsigned();
             $table->string('nama'); //membuat kolom nama
-            $table->string('perumahan'); //membuat kolom perumahan
             $table->string('email'); //membuat kolom email
+            $table->string('password');
             $table->text('alamat'); //membuat kolom alamat dengan tipe text
             $table->string('no_tlpn'); //membuat kolom no tlpn
             $table->timestamps();
+
+            $table->foreign('id_perumahan')->references('id')->on('perumahan')->onDelete('cascade');
         });
     }
 

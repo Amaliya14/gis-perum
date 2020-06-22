@@ -2,66 +2,55 @@
 
 @section('content')
   <div class="content-header">
-    <H3 class="alert alert-info" role="alert">Detail Perumahan</H3>
+    <H3 class="alert alert-info" role="alert">Detail Perumahan {{Auth::user()->perumahan->nama_perumahan}}</H3>
       <section class="box">
-      <div class="container-fluid dashboard-content ">
-        <br>
-          <div class="pull-right">
-            <a href="{{ url('admin-perum/create') }}" type="button" class="btn btn-success glyphicon glyphicon-plus">Tambah</a>
+        <form class="" action="{{route('admin-perum.update')}}" method="post" enctype="multipart/form-data">
+          @csrf
+          @method('PATCh')
+        <div class="box-body">
+          <div class="row">
+          <div class="col-sm-12">
+            @if(!Auth::user()->perumahan->info)
+            <img src="{{asset('frontend/img/rumah.png')}}" alt="" width="450px" height="300px">
+            @else
+            <img src="{{asset('picture/'.$infoPerum->foto)}}" alt="" width="800px" height="400px">
+            @endif
           </div>
-      </div>
-        </br>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label for="">Ganti Foto</label>
+              <input type="file" class="form-control" name="foto" accept="image/jpeg,image/png,image/jpg">
+            </div>
+          </div>
 
-  @if(session()->get('success'))
-    <div class="alert alert-success">
-      {{ session()->get('success') }}  
-    </div>
-  </br>
-  @endif
-  <style>
-    th{
-      text-align: center;
-    }
-  </style>
-    <br>
-      <table class="table table-bordered table-hover table-striped" style="text-align:center">
-          <thead>
-            <tr>
-                    <th>No.</th>
-                    <th>Nama Perumahan</th>
-                    <th>Tipe</th>
-                    <th>Harga</th>
-                    <th>Keterangan</th>
-                    <th>Foto</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                @php $no = 1; @endphp
-                @foreach($infoperum as $infoperum)
-                    <tr>
-                        <td>{{ $no++ }}</td>
-                        <td>{{ $infoperum->nama_perumahan }}</td>
-                        <td>{{ $infoperum->tipe }}</td>
-                        <td>{{ $infoperum->harga }}</td>
-                        <td>{{ $infoperum->keterangan }}</td>
-                        <td><img width="70px" src="{{ url('picture', $infoperum->foto) }}"></td>
-                        
-                <form action="{{ url('admin-perum/destroy', $infoperum->id) }}" method="post">
-                  <a class="btn btn-primary glyphicon glyphicon-edit" type="button" href="{{ url('admin-perum/edit', $infoperum->id) }}">Edit</a>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label for="">Tipe</label>
+              <input type="text" class="form-control" name="tipe" value="{{$infoPerum ? $infoPerum->tipe : ''}}">
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label for="">Harga</label>
+              <input type="text" class="form-control" name="harga" value="{{$infoPerum ? $infoPerum->harga : ''}}">
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label for="">Keterangan</label>
+              <textarea class="form-control" name="keterangan">{{$infoPerum ? $infoPerum->keterangan : ''}}</textarea>
+            </div>
+          </div>
 
-                @csrf
-                  <button class="btn btn-danger glyphicon glyphicon-trash" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Delete</button>
-                </td>
-              </tr>
-             @endforeach
-            </tbody>
-        </table>
-</br>
-      </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" name="button"> <i class="fa fa-plus"></i> Simpan </button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </form>
+      </section>
     </div>
-  </div>
-</section>
-</div>
 
 @endsection

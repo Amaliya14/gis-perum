@@ -15,12 +15,15 @@ class CreateInfoperumTable extends Migration
     {
         Schema::create('infoperum', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama_perumahan');
+            $table->string('id_perumahan');
             $table->string('tipe'); //membuat kolom nama
             $table->string('harga'); //membuat kolom email
             $table->text('keterangan'); //membuat kolom alamat dengan tipe text
             $table->string('foto');
             $table->timestamps();
+
+            $table->foreign('id_perumahan')->references('id')->on('perumahan')->onDelete('cascade');
+            
         });
     }
 

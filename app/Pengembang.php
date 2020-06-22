@@ -2,11 +2,16 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Pengembang extends Model
+class Pengembang extends Authenticatable
 {
     protected $table = 'pengembang';
     protected $guarded = [];
-    protected $fillable = ['nama', 'perumahan', 'email', 'alamat', 'no_tlpn'];
+
+    public function perumahan(){
+      return $this->belongsTo(Perumahan::class, 'id_perumahan','id');
+    }
 }

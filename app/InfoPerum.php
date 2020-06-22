@@ -8,5 +8,8 @@ class InfoPerum extends Model
 {
     protected $table = 'infoperum';
     protected $guarded = [];
-    protected $fillable = ['nama_perumahan', 'tipe', 'harga', 'keterangan', 'foto'];
+
+    public function perumahan(){
+      return $this->belongsTo(Perumahan::class, 'id_perumahan','id');
+    }
 }

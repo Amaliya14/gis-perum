@@ -25,16 +25,23 @@
 
      <form action="{{url('admin/pengembang/update', $pengembang->id)}}" method="post">
         <div class="col-md-11">
-        @csrf 
-       
+        @csrf
+
         <div class="form-group">
           <label for="nama">Nama:</label>
           <input type="text" class="form-control" id="nama" name="nama" value="{{$pengembang->nama}}">
         </div>
 
         <div class="form-group">
-          <label for="perumahan">Perumahan:</label>
-          <input type="text" class="form-control" id="perumahan" name="perumahan" value="{{$pengembang->perumahan}}">
+          <select class="form-control" name="id_perumahan">
+            @foreach($perumahan as $p)
+            @if(!$p->pengembang || $p->pengembang->id == $pengembang->id)
+            <option value="{{$p->id}}" {{$pengembang->id_perumahan === $p->id ? 'selected' : ''}}>
+              {{$p->nama_perumahan}}
+            </option>
+            @endif
+            @endforeach
+          </select>
         </div>
 
         <div class="form-group">
@@ -56,7 +63,7 @@
                     <a href="{{ url('admin/pengembang') }}" class="btn btn-md btn-danger" type="button">Reset</a>
                 </div>
       </form>
- 
+
     </div>
 </div>
 </body>
