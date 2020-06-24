@@ -19,7 +19,15 @@
 
         <div class="form-group">
           <label for="perumahan">Perumahan:</label>
-            <input type="text" class="form-control" id="perumahan" name="perumahan">
+            <select class="form-control" name="id_perumahan">
+              @foreach($perumahan as $p)
+              @if(!$p->pengembang)
+              <option value="{{$p->id}}">
+                {{$p->nama_perumahan}}
+              </option>
+              @endif
+              @endforeach
+            </select>
         </div>
 
         <div class="form-group">
@@ -36,12 +44,12 @@
           <label for="no_tlpn">No Telepon:</label>
             <input type="text" class="form-control" id="no_tlpn" name="no_tlpn">
         </div>
-                </br>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-md btn-primary">Submit</button>
-                    <a href="{{ url('admin/pengembang') }}" class="btn btn-md btn-danger" type="button">Cancel</a>
-                </div>
-              
+          </br>
+          <div class="form-group">
+            <a href="{{ url('admin/pengembang') }}" class="btn btn-md btn-danger" type="button">Batal</a>
+              <button type="submit" class="btn btn-md btn-primary">Simpan</button>
+          </div>
+
       </form>
     </div>
   </body>

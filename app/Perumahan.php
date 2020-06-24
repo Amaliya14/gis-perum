@@ -8,5 +8,12 @@ class Perumahan extends Model
 {
     protected $table = 'perumahan';
     protected $guarded = [];
-    protected $fillable = ['nama_perumahan', 'lokasi', 'kecamatan', 'jumlah_rumah', 'luas_lahan_bangunan', 'latitude', 'longitude', 'gambar'];
+
+    public function pengembang(){
+      return $this->hasOne(Pengembang::class, 'id_perumahan', 'id');
+    }
+
+    public function info(){
+      return $this->hasOne(InfoPerum::class, 'id_perumahan', 'id');
+    }
 }

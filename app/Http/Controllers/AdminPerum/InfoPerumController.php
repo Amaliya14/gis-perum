@@ -6,6 +6,7 @@ use Auth;
 use App\InfoPerum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Storage;
 
 class InfoPerumController extends Controller
 {
@@ -20,8 +21,8 @@ class InfoPerumController extends Controller
 
     public function index()
     {
-        $infoperum = InfoPerum::all();
-        return view('admin-perum.infoperum.index', compact('infoperum'));
+        $infoPerum = InfoPerum::where('id_perumahan', Auth::user()->perumahan->id)->first();
+        return view('admin-perum.infoperum.index',compact('infoPerum'));
     }
 
     /**
@@ -49,7 +50,7 @@ class InfoPerumController extends Controller
             'Keterangan' => 'required',
             'foto' => 'required',
         ]);
-  
+
         InfoPerum::create($request->all());
 
         //return redirect()->back();
@@ -87,28 +88,51 @@ class InfoPerumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
-            'nama_perumahan' => 'required',
             'tipe' => 'required',
             'harga' => 'required',
-            'Keterangan' => 'required',
-            'foto' => 'required',
+            'keterangan' => 'required',
         ]);
 
-         $data = [
-            'nama_perumahan' =>$request->nama_perumahan,
-            'tipe' =>$request->tipe,
-            'harga' =>$request->harga,
-            'Keterangan' =>$request->Keterangan,
-            'foto' =>$request->foto,
-        ];
+        $infoPerum = InfoPerum::where('id_perumahan', Auth::user()->perumahan->id)->first();
+        // dd($request->all());
 
-        InfoPerum::find($id)->update($data);
-        // return $data;
-        return redirect('admin-perum/infoperum')->with('success', 'Data berhasil diubah!');
-         //return redirect()->back();
+        if($infoPerum) {
+          $foto = $infoPerum->foto;
+          if($request->foto){
+            if (Storage::exists($foto)) { Storage::delete($foto); }
+          $foto = $request->file('foto')->store('perumahan');
+          }
+
+          $infoPerum->update([
+            'tipe' => $request->tipe,
+            'harga' => $request->harga,
+            'Keterangan' => $request->keterangan,
+            'foto' => $foto,
+          ]);
+
+          return redirect('admin-perum/infoperum')->with('success', 'Data berhasil diubah!');
+
+        }
+        else{
+          if($request->foto){
+            $foto = $request->file('foto')->store('perumahan');
+            InfoPerum::create([
+              'tipe' => $request->tipe,
+              'harga' => $request->harga,
+              'Keterangan' => $request->keterangan,
+              'foto' => $foto,
+              'id_perumahan' => Auth::user()->perumahan->id
+            ]);
+
+            return redirect('admin-perum/infoperum')->with('success', 'Data berhasil diubah!');
+          }else {
+            return redirect()->back()->with('success', 'salah!');
+          }
+        }
+
     }
 
     /**

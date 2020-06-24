@@ -11,7 +11,7 @@
         </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
+      <!-- <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
           <span class="input-group-btn">
@@ -19,36 +19,19 @@
                 </button>
               </span>
         </div>
-      </form>
+      </form> -->
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
-        <li>
+        <li class="@if(Request::is('admin/dashboard')) active @endif">
           <a href="{{url('admin/dashboard')}}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <span class="pull-right-container">
             </span>
           </a>
         </li>
-        
-        <li>
-          <a href="{{url('admin/pengembang')}}">
-            <i class="fa fa-edit"></i> 
-            <span>Data Pengembang</span>
-            <span class="pull-right-container"></span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="{{url('admin/perumahan')}}">
-            <i class="fa fa-book"></i> 
-            <span>Data Perumahan</span>
-            <span class="pull-right-container"></span>
-          </a>
-        </li>
-
-        <li>
+        <li class="@if(Request::is('admin/kecamatan')) active @endif">
           <a href="{{url('admin/kecamatan')}}">
             <i class="fa fa-pie-chart"></i>
             <span>Data Kecamatan</span>
@@ -56,10 +39,24 @@
           </a>
         </li>
 
+        <li class="@if(Request::is('admin/perumahan') || Request::is('admin/perumahan/*') ) active @endif">
+          <a href="{{url('admin/perumahan')}}">
+            <i class="fa fa-book"></i>
+            <span>Data Perumahan</span>
+            <span class="pull-right-container"></span>
+          </a>
+        </li>
+        <li class="@if(Request::is('admin/pengembang') || Request::is('admin/pengembang/*')) active @endif">
+          <a href="{{url('admin/pengembang')}}">
+            <i class="fa fa-edit"></i>
+            <span>Data Pengembang</span>
+            <span class="pull-right-container"></span>
+          </a>
+        </li>
         <li>
           <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
-            <i class="fa fa-circle-o text-red"></i> 
+            <i class="fa fa-circle-o text-red"></i>
             <span >Logout</span>
             <span class="pull-right-container"></span>
           </a>

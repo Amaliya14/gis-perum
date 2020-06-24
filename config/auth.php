@@ -82,7 +82,7 @@ return [
 
         'admin-perums' => [
             'driver' => 'eloquent',
-            'model' => App\AdminPerum::class,
+            'model' => App\Pengembang::class,
         ],
 
         // 'users' => [

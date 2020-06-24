@@ -6,6 +6,8 @@ use Auth;
 use App\Pengembang;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Perumahan;
+use DB;
 
 class PengembangController extends Controller
 {
@@ -20,8 +22,8 @@ class PengembangController extends Controller
 
     public function index()
     {
-        $pengembang = Pengembang::all();
-        return view('admin.pengembang.index', compact('pengembang'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $pengembang = Pengembang::orderBy('id','DESC')->get();
+        return view('admin.pengembang.index', compact('pengembang'));
     }
 
     /**
@@ -31,7 +33,9 @@ class PengembangController extends Controller
      */
     public function create()
     {
-        return view('admin.pengembang.create');
+        $perumahan = Perumahan::orderBy('nama_perumahan', 'ASC')->get(['nama_perumahan', 'id']);
+
+        return view('admin.pengembang.create', compact('perumahan'));
     }
 
     /**
@@ -44,7 +48,6 @@ class PengembangController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'perumahan' => 'required',
             'email' => 'required',
             'alamat' => 'required',
             'no_tlpn' => 'required',
@@ -52,13 +55,14 @@ class PengembangController extends Controller
 
         $data = [
             'nama' =>$request->nama,
-            'perumahan' =>$request->perumahan,
             'email' =>$request->email,
             'alamat' =>$request->alamat,
             'no_tlpn' =>$request->no_tlpn,
+            'id_perumahan' => $request->id_perumahan,
+            'password' => bcrypt(12345678)
         ];
-  
-        Pengembang::create($request->all());
+
+        Pengembang::create($data);
 
         //return redirect()->back();
 
@@ -85,7 +89,9 @@ class PengembangController extends Controller
     public function edit($id)
     {
         $pengembang = Pengembang::find($id);
-        return view('admin.pengembang.edit', compact('pengembang'));
+        $perumahan = Perumahan::orderBy('nama_perumahan', 'ASC')->get(['nama_perumahan', 'id']);
+
+        return view('admin.pengembang.edit', compact('pengembang','perumahan'));
     }
 
     /**
@@ -99,23 +105,21 @@ class PengembangController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'perumahan' => 'required',
             'email' => 'required',
             'alamat' => 'required',
             'no_tlpn' => 'required',
         ]);
         $data = [
             'nama' =>$request->nama,
-            'perumahan' =>$request->perumahan,
             'email' =>$request->email,
             'alamat' =>$request->alamat,
             'no_tlpn' =>$request->no_tlpn,
+            'id_perumahan' => $request->id_perumahan,
         ];
 
         Pengembang::find($id)->update($data);
-        // return $data;
+
         return redirect('admin/pengembang')->with('success', 'Data berhasil diubah!');
-         //return redirect()->back();
     }
 
     /**

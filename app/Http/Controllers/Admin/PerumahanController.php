@@ -22,7 +22,7 @@ class PerumahanController extends Controller
 
     public function index()
     {
-        $perumahan = Perumahan::all();
+        $perumahan = Perumahan::orderBy('id','DESC')->get();
         return view('admin.perumahan.index', compact('perumahan'));
     }
 
@@ -53,26 +53,18 @@ class PerumahanController extends Controller
             'kecamatan' => 'required',
             'jumlah_rumah' => 'required',
             'luas_lahan_bangunan' => 'required',
-            'gambar' => 'required|image|max:2000',
             'latitude' => 'required',
             'longitude' => 'required',
         ]);
-        
-        $gambar = $request->file('gambar')->store('perumahan');
-
         Perumahan::create([
             'nama_perumahan' => $request->nama_perumahan,
             'lokasi' => $request->lokasi,
             'kecamatan' => $request->kecamatan,
             'jumlah_rumah' => $request->jumlah_rumah,
             'luas_lahan_bangunan' => $request->luas_lahan_bangunan,
-            'gambar' => $gambar,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude
         ]);
-        // Perumahan::create($request->all());
-
-        //return redirect()->back();
 
         return redirect('admin/perumahan')->with('success', 'Berhasil Menambahkan Data!');
     }
@@ -97,7 +89,8 @@ class PerumahanController extends Controller
     public function edit($id)
     {
         $perumahan = Perumahan::find($id);
-        return view('admin.perumahan.edit', compact('perumahan'));
+        $kecamatan = Kecamatan::orderBy('kecamatan','ASC')->get();
+        return view('admin.perumahan.edit', compact('perumahan', 'kecamatan'));
     }
 
     /**
@@ -117,8 +110,9 @@ class PerumahanController extends Controller
             'luas_lahan_bangunan' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
-
         ]);
+
+        $perumahan = Perumahan::find($id);
 
         $data = [
             'nama_perumahan'=>$request->nama_perumahan,
@@ -128,13 +122,12 @@ class PerumahanController extends Controller
             'luas_lahan_bangunan' =>$request->luas_lahan_bangunan,
             'latitude' =>$request->latitude,
             'longitude' =>$request->longitude,
-
         ];
 
-        Perumahan::find($id)->update($data);
-        // return $data;
+        $perumahan->update($data);
+
         return redirect('admin/perumahan')->with('success', 'Data berhasil diubah!');
-         //return redirect()->back();
+
     }
 
     /**
@@ -146,13 +139,6 @@ class PerumahanController extends Controller
     public function destroy($id)
     {
         $perumahan = Perumahan::find($id);
-        // dd($perumahan);
-        
-        $gambar = $perumahan->gambar;
-        if (Storage::exists($gambar)) {
-          Storage::delete($gambar);
-        }
-
         $perumahan->delete();
 
         return redirect('admin/perumahan')->with('success', 'Data berhasil dihapus!');
