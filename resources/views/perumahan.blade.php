@@ -24,7 +24,7 @@
     <header id="ts-header" class="fixed-top">
       <nav id="ts-secondary-navigation" class="navbar" style="margin-bottom: -20px">
             <div class="container justify-content-center mt-3">
-              <h2 class="text-dark">Sistem Informasi Geografis Pemetaan Di Kota Tegal</h2>
+              <h2 class="text-dark">Sistem Informasi Geografis Pemetaan Perumahan Di Kota Tegal</h2>
             </div>
         </nav>
         <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-light">
