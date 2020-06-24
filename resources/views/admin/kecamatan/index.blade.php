@@ -6,11 +6,6 @@
       <section class="box">
       <div class="container-fluid dashboard-content ">
         <br>
-          <div class="pull-right">
-            <a href="{{url('admin/kec/create')}}" type="button" class="btn btn-success glyphicon glyphicon-plus">Tambah</a>
-          </div>
-      </div>
-        </br>
 
   @if(session()->get('success'))
     <div class="alert alert-success">
@@ -18,13 +13,28 @@
     </div>
   </br>
   @endif
+
+<div class="form-group">
+  <div class="text-left">
+            <a href="{{url('admin/kec/create')}}" type="button" class="btn btn-success glyphicon glyphicon-plus">Tambah</a>
+          </div>
+      </div>
+
+  <div class="text-right">
+        <form action="/perumahan/cari" method="GET" class="form-inline">
+          <input class="form-control" type="text" name="cari" placeholder="Cari Perumahan .." value="{{ old('cari') }}">
+          <input class="btn btn-primary ml-3" type="submit" value="CARI">
+        </form>
+
   <style>
     th{
       text-align: center;
     }
   </style>
     <br>
-      <table class="table table-bordered table-condensed" style="text-align:center">
+
+    <div class="box-body">
+      <table class="table table-bordered table-hover table-striped" style="text-align:center">
           <thead>
             <tr>
                     <th>No.</th>
