@@ -189,11 +189,11 @@
                                <div class="ts-description-lists">
                                    <dl>
                                        <dt>Luas Lahan Bangunan</dt>
-                                       <dd>{{$perum->luas_lahan_bangunan}} m<sup>2</sup></dd>
+                                       <dd>{{$perum->luas_lahan_bangunan}} M<sup>2</sup></dd>
                                    </dl>
                                    <dl>
                                        <dt>Jumlah Rumah</dt>
-                                       <dd>{{$perum->jumlah_rumah}}</dd>
+                                       <dd>{{$perum->jumlah_rumah}} Unit</dd>
                                    </dl>
                                </div>
                            </div>

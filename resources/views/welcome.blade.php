@@ -183,7 +183,7 @@
                                   </dl>
                                   <dl>
                                       <dt>Jumlah Rumah</dt>
-                                      <dd>{{$perum->jumlah_rumah}} <sup>Unit</sup></dd>
+                                      <dd>{{$perum->jumlah_rumah}}</dd>
                                   </dl>
                                 </div>
                             </div>
