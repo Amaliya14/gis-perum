@@ -139,10 +139,10 @@
                                 <dl class="ts-description-list__line mb-0">
 
                                     <dt>Luas Lahan Bangunan:</dt>
-                                    <dd>{{$perumahan->luas_lahan_bangunan}} m<sup>2</sup></dd>
+                                    <dd>{{$perumahan->luas_lahan_bangunan}} M<sup>2</sup></dd>
 
                                     <dt>Jumlah Rumah</dt>
-                                    <dd>{{$perumahan->jumlah_rumah}}</dd>
+                                    <dd>{{$perumahan->jumlah_rumah}} Unit</dd>
 
                                     <dt>tipe</dt>
                                     <dd>{{$perumahan->info->tipe}}</dd>
@@ -313,7 +313,7 @@
             <div class="container">
 
                 <!--Copyright-->
-                <div class="ts-copyright">(C) 2018 ThemeStarz, All rights reserved</div>
+                <div class="ts-copyright"> 2020 Sistem Informasi Geografis Pemetaan Perumahan Di Kota Tegal</div>
 
                 <!--Social Icons-->
                 <div class="ts-footer-nav">

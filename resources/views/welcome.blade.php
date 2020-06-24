@@ -183,7 +183,7 @@
                                   </dl>
                                   <dl>
                                       <dt>Jumlah Rumah</dt>
-                                      <dd>{{$perum->jumlah_rumah}}</dd>
+                                      <dd>{{$perum->jumlah_rumah}} Unit</dd>
                                   </dl>
                                 </div>
                             </div>
@@ -371,7 +371,7 @@
             <div class="container">
 
                 <!--Copyright-->
-                <div class="ts-copyright">(C) 2018 ThemeStarz, All rights reserved</div>
+                <div class="ts-copyright"> 2020 Sistem Informasi Geografis Pemetaan Perumahan Di Kota Tegal</div>
 
                 <!--Social Icons-->
                 <div class="ts-footer-nav">
