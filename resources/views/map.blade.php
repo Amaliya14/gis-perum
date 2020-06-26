@@ -24,7 +24,7 @@
     <header id="ts-header" class="fixed-top">
       <nav id="ts-secondary-navigation" class="navbar" style="margin-bottom: -20px">
             <div class="container justify-content-center mt-3">
-              <h2 class="text-dark">Sistem Informasi Geografis Pemetaan Di Kota Tegal</h2>
+              <h2 class="text-dark">Sistem Informasi Geografis Pemetaan Perumahan Di Kota Tegal</h2>
             </div>
         </nav>
         <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-light">
@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{url('/kontak')}}">
                                 Kontak
                             </a>
                         </li>
@@ -108,6 +108,12 @@
                       <div class="ts-form-collapse ts-xs-hide-collapse collapse show">
 
                           <!--Keyword-->
+                          <select class="custom-select my-2" id="kecamatan" name="category">
+                              <option value="">Kecamatan</option>
+                              @foreach($kecamatan as $k)
+                              <option value="{{$k->kecamatan}}">{{$k->kecamatan}}</option>
+                              @endforeach
+                          </select>
                           <div class="form-group my-2">
                               <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Nama Perumahan">
                           </div>
@@ -116,12 +122,7 @@
                           </div> -->
 
                           <!--Category-->
-                          <select class="custom-select my-2" id="kecamatan" name="category">
-                              <option value="">Kecamatan</option>
-                              @foreach($kecamatan as $k)
-                              <option value="{{$k->kecamatan}}">{{$k->kecamatan}}</option>
-                              @endforeach
-                          </select>
+
 
                           <!--Submit button-->
 
@@ -188,7 +189,16 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
     center: [109.125595, -6.879704], // starting position [lng, lat]
     zoom: 12 // starting zoom
   });
+
+
+
   map.addControl(new mapboxgl.NavigationControl());
+  // map.addControl(
+  // new mapboxgl.GeolocateControl({
+  //   positionOptions: { enableHighAccuracy: true },
+  //   trackUserLocation: true })
+  // );
+
   const url = '{{config('app.url')}}';
   const search = document.querySelector('#keyword');
   const kecamatan = document.querySelector('#kecamatan');
@@ -196,6 +206,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
 
   async function showToMap(){
     const perumahan = await fetch(url+'/mapPerumahan').then(res => res.json()).then(res => res);
+
 
     perumahan.forEach(p => {
       let marker = new mapboxgl.Marker();
@@ -205,17 +216,26 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
     });
 
     search.addEventListener('input', function(){
+      console.log("hahaha");
+      if(this.value !== '' && kecamatan.value !== ''){
         const filter = perumahan.filter(f => {
-          if(f.info !== null){
-            return f.nama_perumahan.toLowerCase().includes(this.value)
-          }
+            return f.nama_perumahan.toLowerCase().includes(this.value) && f.kecamatan === kecamatan.value
         });
-
         clearMarkers();
         filter.forEach(p => {
           let marker = new mapboxgl.Marker();
           showMarker(p, marker)
         })
+      }else {
+        const filter = perumahan.filter(f => {
+            return f.kecamatan === kecamatan.value
+        });
+        clearMarkers();
+        filter.forEach(p => {
+          let marker = new mapboxgl.Marker();
+          showMarker(p, marker)
+        })
+      }
     })
 
   kecamatan.addEventListener('click', function(){
@@ -231,13 +251,13 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
       filter.forEach(p => {
         let marker = new mapboxgl.Marker();
         showMarker(p, marker)
-      })
+      });
+      search.value = ''
     }else {
+      clearMarkers();
       perumahan.forEach(p => {
         let marker = new mapboxgl.Marker();
-        if(p.info !== null){
-          showMarker(p, marker);
-        }
+        showMarker(p, marker);
       });
     }
   });

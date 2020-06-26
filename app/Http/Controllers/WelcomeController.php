@@ -22,8 +22,10 @@ class WelcomeController extends Controller
     }
 
     public function mapPerumahan(){
-      $perumahan = Perumahan::with('info')
-      ->get(['id','nama_perumahan','lokasi','luas_lahan_bangunan','jumlah_rumah','longitude','latitude', 'kecamatan']);
+
+      $perumahan = Perumahan::with('info')->whereHas('info', function($query){
+        $query->whereNotNull('created_at');
+      })->get();
 
       return $perumahan;
     }
