@@ -122,7 +122,7 @@
                           </div> -->
 
                           <!--Category-->
-
+                  
 
                           <!--Submit button-->
 
@@ -189,6 +189,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
     center: [109.125595, -6.879704], // starting position [lng, lat]
     zoom: 12 // starting zoom
   });
+<<<<<<< HEAD
 
 
 
@@ -199,6 +200,9 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
   //   trackUserLocation: true })
   // );
 
+=======
+  map.addControl(new mapboxgl.NavigationControl());
+>>>>>>> 6fbcb1a59d1bdb1eef1bcd3f195293504616c71c
   const url = '{{config('app.url')}}';
   const search = document.querySelector('#keyword');
   const kecamatan = document.querySelector('#kecamatan');
@@ -207,7 +211,10 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
   async function showToMap(){
     const perumahan = await fetch(url+'/mapPerumahan').then(res => res.json()).then(res => res);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6fbcb1a59d1bdb1eef1bcd3f195293504616c71c
     perumahan.forEach(p => {
       let marker = new mapboxgl.Marker();
       if(p.info !== null){
@@ -216,6 +223,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
     });
 
     search.addEventListener('input', function(){
+<<<<<<< HEAD
       console.log("hahaha");
       if(this.value !== '' && kecamatan.value !== ''){
         const filter = perumahan.filter(f => {
@@ -230,12 +238,23 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
         const filter = perumahan.filter(f => {
             return f.kecamatan === kecamatan.value
         });
+=======
+        const filter = perumahan.filter(f => {
+          if(f.info !== null){
+            return f.nama_perumahan.toLowerCase().includes(this.value)
+          }
+        });
+
+>>>>>>> 6fbcb1a59d1bdb1eef1bcd3f195293504616c71c
         clearMarkers();
         filter.forEach(p => {
           let marker = new mapboxgl.Marker();
           showMarker(p, marker)
         })
+<<<<<<< HEAD
       }
+=======
+>>>>>>> 6fbcb1a59d1bdb1eef1bcd3f195293504616c71c
     })
 
   kecamatan.addEventListener('click', function(){
@@ -251,6 +270,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
       filter.forEach(p => {
         let marker = new mapboxgl.Marker();
         showMarker(p, marker)
+<<<<<<< HEAD
       });
       search.value = ''
     }else {
@@ -258,6 +278,15 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
       perumahan.forEach(p => {
         let marker = new mapboxgl.Marker();
         showMarker(p, marker);
+=======
+      })
+    }else {
+      perumahan.forEach(p => {
+        let marker = new mapboxgl.Marker();
+        if(p.info !== null){
+          showMarker(p, marker);
+        }
+>>>>>>> 6fbcb1a59d1bdb1eef1bcd3f195293504616c71c
       });
     }
   });

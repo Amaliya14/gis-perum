@@ -6,11 +6,6 @@
       <section class="box">
       <div class="container-fluid dashboard-content ">
         <br>
-          <div class="pull-right">
-            <a href="{{url('admin/kec/create')}}" type="button" class="btn btn-success glyphicon glyphicon-plus">Tambah</a>
-          </div>
-      </div>
-        </br>
 
   @if(session()->get('success'))
     <div class="alert alert-success">
@@ -18,6 +13,14 @@
     </div>
   </br>
   @endif
+
+<div class="form-group">
+  <div class="text-left">
+            <a href="{{url('admin/kec/create')}}" type="button" class="btn btn-success glyphicon glyphicon-plus">Tambah</a>
+          </div>
+      </div>
+
+
   <style>
     th{
       text-align: center;
