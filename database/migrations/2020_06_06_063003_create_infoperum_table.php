@@ -23,7 +23,7 @@ class CreateInfoperumTable extends Migration
             $table->timestamps();
 
             $table->foreign('id_perumahan')->references('id')->on('perumahan')->onDelete('cascade');
-            
+
         });
     }
 

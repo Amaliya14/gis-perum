@@ -86,6 +86,8 @@
       zoom: 11 // starting zoom
     });
 
+    map.addControl(new mapboxgl.NavigationControl());
+
     const marker = new mapboxgl.Marker();
     if(lat.value !== '' && long.value !== ''){
       marker.setLngLat({lng: long.value,lat: lat.value}).addTo(map);
