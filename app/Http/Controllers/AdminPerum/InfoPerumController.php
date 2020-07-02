@@ -75,10 +75,9 @@ class InfoPerumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $infoperum = InfoPerum::find($id);
-        return view('admin.infoperum.edit', compact('infoperum'));
+      return view('admin-perum.infoperum.edit');
     }
 
     /**
@@ -97,6 +96,7 @@ class InfoPerumController extends Controller
         ]);
 
         $infoPerum = InfoPerum::where('id_perumahan', Auth::user()->perumahan->id)->first();
+        Auth::user()->perumahan->update(['nama_perumahan' => $request->nama_perumahan]);
         // dd($request->all());
 
         if($infoPerum) {

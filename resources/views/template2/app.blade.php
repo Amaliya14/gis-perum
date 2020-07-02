@@ -49,7 +49,7 @@
   <div class="content-wrapper">
     @yield('content')
 
-    
+
   </div>
   <!-- /.content-wrapper -->
   @include('template2.footer')
@@ -92,5 +92,6 @@
 <script src="{{url('adminlte/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('adminlte/dist/js/demo.js')}}"></script>
+@yield('script')
 </body>
 </html>
