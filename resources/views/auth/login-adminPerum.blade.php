@@ -28,11 +28,13 @@
     <div class="card-body p-0">
 <!-- Nested Row within Card Body -->
     <div class="row">
-    <div class="col-lg-6 d-none d-lg-block"></div>
+    <div class="col-lg-6">
+      <img src="{{url('adminlte/dist/img/home_1.jpg')}}">
+    </div>
     <div class="col-lg-6">
     <div class="p-5">
       <div class="text-center">
-        <h1 class="h4 text-gray-900 mb-4">Login Admin Perum</h1>
+        <h1 class="h3 text-gray-800 mb-4">Login Admin Perum</h1>
       </div>
         <form method="POST" action="{{route('admin-perum.login')}}">
          @csrf
