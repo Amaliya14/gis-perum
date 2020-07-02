@@ -27,19 +27,23 @@
             </tr>
             </thead>
               <tbody>
-                @if(Auth::user()->perumahan->info)
+                <!-- @if(Auth::user()->perumahan->info) -->
                   <tr>
                     <td>1</td>
+                    @if(Auth::user()->perumahan->info)
                     <td> <img width="70" height="70" src="{{asset('picture/'.Auth::user()->perumahan->info->foto)}}" alt=""> </td>
+                    @else
+                    <td> <img width="70" height="70" src="{{asset('frontend/img/rumah.png')}}" alt=""> </td>
+                    @endif
                     <td>{{Auth::user()->perumahan->nama_perumahan}}</td>
-                    <td>{{Auth::user()->perumahan->info->tipe}}</td>
-                    <td>{{Auth::user()->perumahan->info->harga}}</td>
-                    <td>{{Auth::user()->perumahan->info->keterangan}}</td>
+                    <td>{{Auth::user()->perumahan->info ? Auth::user()->perumahan->info->tipe : ''}}</td>
+                    <td>{{Auth::user()->perumahan->info ? Auth::user()->perumahan->info->harga : ''}}</td>
+                    <td>{{Auth::user()->perumahan->info ? Auth::user()->perumahan->info->katerangan : ''}}</td>
                     <td>
                       <button type="button" class="btn btn-primary" name="button" onclick="window.location='{{route('info-edit')}}'"> <i class="fa fa-edit"></i> </button>
                     </td>
                   </tr>
-                @endif
+                <!-- @endif -->
               </tbody>
         </table>
       </div>
