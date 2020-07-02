@@ -9,7 +9,7 @@
 
   @if(session()->get('success'))
     <div class="alert alert-success">
-      {{ session()->get('success') }}  
+      {{ session()->get('success') }}
     </div>
   </br>
   @endif
@@ -20,11 +20,6 @@
           </div>
       </div>
 
-  <div class="text-right">
-        <form action="/perumahan/cari" method="GET" class="form-inline">
-          <input class="form-control" type="text" name="cari" placeholder="Cari Perumahan .." value="{{ old('cari') }}">
-          <input class="btn btn-primary ml-3" type="submit" value="CARI">
-        </form>
 
   <style>
     th{
@@ -32,16 +27,15 @@
     }
   </style>
     <br>
-
     <div class="box-body">
-      <table class="table table-bordered table-hover table-striped" style="text-align:center">
+      <table id="example1" class="table table-bordered table-condensed" style="text-align:center">
           <thead>
             <tr>
-                    <th>No.</th>
-                    <th>Nama Kecamatan</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
+                <th>No.</th>
+                <th>Nama Kecamatan</th>
+                <th>Action</th>
+            </tr>
+            </thead>
                 <tbody>
                 @php $no = 1; @endphp
                 @foreach($kecamatan as $kecamatan)
@@ -50,21 +44,29 @@
                         <td>{{ $kecamatan->kecamatan }}</td>
                         <td>
                 <form action="{{ url('admin/kec/destroy', $kecamatan->id) }}" method="post">
-                
-                <a class="btn btn-warning glyphicon glyphicon-pencil" type="button" href="{{ url('admin/kec/edit', $kecamatan->id) }}">Edit</a>
+
+                <a class="btn btn-warning glyphicon glyphicon-pencil" type="button" href="{{ url('admin/kec/edit', $kecamatan->id) }}"> Edit</a>
 
                 @csrf
-                    <button class="btn btn-danger glyphicon glyphicon-trash" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Delete</button>
+                    <button class="btn btn-danger glyphicon glyphicon-trash" type="submit" onclick="return confirm('Yakin ingin menghapus data?')"> Delete</button>
                 </td>
               </tr>
              @endforeach
             </tbody>
         </table>
-        </br>
       </div>
-    </div>
+    </section>
   </div>
-</section>
-</div>
 
+@endsection
+
+@section('script')
+
+<script>
+$(function () {
+  $('#example1').DataTable({
+        "lengthMenu": [[5, 10, 25, 50, 100], [5, 10, 25, 50, 100]]
+    } )
+})
+</script>
 @endsection

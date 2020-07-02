@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{url('/kontak')}}">
                                 Kontak
                             </a>
                         </li>
@@ -172,7 +172,7 @@
                            <!--Card Image-->
                            <a href="#" class="card-img" data-bg-image="{{asset('picture/'.$perum->info->foto)}}">
                                <div class="ts-item__info-badge">
-                                   Rp. {{number_format($perum->info->harga,0,',','.')}}
+                                   Rp. {{number_format($perum->info->harga,0,',','.')}} Juta
                                </div>
                                <figure class="ts-item__info">
                                    <h4>{{$perum->nama_perumahan}}</h4>

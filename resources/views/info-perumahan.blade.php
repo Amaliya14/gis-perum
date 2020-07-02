@@ -71,7 +71,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{url('/kontak')}}">
                                 Kontak
                             </a>
                         </li>
@@ -112,7 +112,7 @@
                     <!--Price-->
                     <h3>
                         <span class="badge badge-primary p-3 font-weight-normal ts-shadow__sm">
-                          Rp. {{number_format($perumahan->info->harga,0,',','.')}}</span>
+                          Rp. {{number_format($perumahan->info->harga,0,',','.')}} Juta</span>
                     </h3>
 
                 </div>
@@ -168,8 +168,8 @@
                                     <dt><i class="fa fa-phone-square ts-opacity__30 mr-2"></i>Phone:</dt>
                                     <dd class="border-bottom pb-2">{{$perumahan->pengembang->no_tlpn}}</dd>
 
-                                    <dt><i class="fa fa-envelope ts-opacity__30 mr-2"></i>Email:</dt>
-                                    <dd class="border-bottom pb-2"><a href="#">{{$perumahan->pengembang->email}}</a></dd>
+                                    <dt><i class="fa fa-user ts-opacity__30 mr-2"></i>Nama:</dt>
+                                    <dd class="border-bottom pb-2"><a href="#">{{$perumahan->pengembang->nama}}</a></dd>
 
 
                                 </dl>
