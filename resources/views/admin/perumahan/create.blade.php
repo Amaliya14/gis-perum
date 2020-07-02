@@ -98,7 +98,7 @@
      long.value = e.lngLat.lng;
      const pos = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${e.lngLat.lng},${e.lngLat.lat}.json?types=poi&lang=id&access_token=pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczMW15eHVlYXBhZW4ifQ.uqVd8rK5Oe49IjUREFnfgw`)
       .then(res => res.json()).then(res => res.features[0]);
-      const jl = pos.properties.address;
+     const jl = pos.properties.address || '';
      const desa = "Desa "+pos.context[0].text;
      const Kecamatan = "Kecamatan "+pos.context[1].text;
      const Kabupaten = pos.context[3].text;
