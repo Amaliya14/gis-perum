@@ -173,7 +173,7 @@
                            <!--Card Image-->
                            <a href="#" class="card-img" data-bg-image="{{asset('picture/'.$perum->info->foto)}}">
                                <div class="ts-item__info-badge">
-                                   Rp. {{number_format($perum->info->harga,0,',','.')}}
+                                   Rp. {{number_format($perum->info->harga,0,',','.')}} Juta
                                </div>
                                <figure class="ts-item__info">
                                    <h4>{{$perum->nama_perumahan}}</h4>
