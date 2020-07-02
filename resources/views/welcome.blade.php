@@ -330,7 +330,7 @@
                     <div class="col-md-2">
                         <h4>Navigation</h4>
                         <nav class="nav flex-row flex-md-column mb-4">
-                            <a href="#" class="nav-link">Home</a>
+                            <a href="#" class="nav-link">Home 2</a>
                             <a href="#" class="nav-link">Listing</a>
                             <a href="#" class="nav-link">About Us</a>
                             <a href="#" class="nav-link">Sign In</a>
