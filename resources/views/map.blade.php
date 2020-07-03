@@ -58,13 +58,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/perumahan')}}">
-                                Perumahan
-                            </a>
+                          <a class="dropdown-toggle" data-toggle="dropdown">
+                            Info Perumahan
+                          </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="{{url('/perumahan')}}">Perumahan</a></li>
+                                <li><a href="{{url('/nama-pengembang')}}">Nama Pengembang</a></li>
+                              </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/kontak')}}">
-                                Kontak
+                                Contact Us
                             </a>
                         </li>
                     </ul>

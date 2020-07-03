@@ -59,13 +59,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{url('perumahan')}}">
-                                Perumahan
-                            </a>
+                          <a class="dropdown-toggle" data-toggle="dropdown">
+                            Info Perumahan
+                          </a>
+                            <ul class="dropdown-menu">
+                              <li><a href="{{url('/perumahan')}}">Perumahan</a></li>
+                              <li><a href="{{url('/pengembang')}}">Nama Pengembang</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/kontak')}}">
-                                Kontak
+                                Contact Us
                             </a>
                         </li>
                     </ul>
@@ -244,48 +248,37 @@
                     <!--Brand and description-->
                     <div class="col-md-6">
                         <a href="#" class="brand">
-                            <!-- <img src="assets/img/logo.png" alt=""> -->
+                            <img src="assets/img/logo.png" alt="">
                         </a>
-                        <p class="mb-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat tempor sapien.
-                            In lobortis posuere tincidunt. Curabitur malesuada tempus ligula nec maximus. Nam tortor
-                            arcu,
-                            tincidunt quis molestie non, sagittis dignissim ligula. Fusce est ipsum, pharetra in felis
-                            ac,
-                            lobortis volutpat diam.
-                        </p>
-                        <a href="#" class="btn btn-outline-dark mb-4">Contact Us</a>
                     </div>
 
-                    <!--Navigation-->
+                     <!--Navigation-->
                     <div class="col-md-2">
                         <h4>Navigation</h4>
                         <nav class="nav flex-row flex-md-column mb-4">
-                            <a href="#" class="nav-link">Home</a>
-                            <a href="#" class="nav-link">Listing</a>
-                            <a href="#" class="nav-link">About Us</a>
-                            <a href="#" class="nav-link">Sign In</a>
-                            <a href="#" class="nav-link">Register</a>
-                            <a href="#" class="nav-link">Submit Property</a>
+                            <a href="{{url('/')}}" class="nav-link">Home</a>
+                            <a href="{{url('/map')}}" class="nav-link">Peta</a>
+                            <a href="{{url('/perumahan')}}" class="nav-link">Perumahan</a>
+                            <a href="{{url('/kontak')}}" class="nav-link">Contact</a>
                         </nav>
                     </div>
 
                     <!--Contact Info-->
                     <div class="col-md-4">
-                        <h4>Contact</h4>
+                        <h4>Contact Us</h4>
                         <address class="ts-text-color-light">
-                            2590 Rocky Road
+                            Dinas Perumahan Dan Kawasan Pemukiman Kota Tegal
                             <br>
-                            Philadelphia, PA 19108
+                            Jl. Ki Gede Sebayu No.11 Tegal
                             <br>
                             <strong>Email: </strong>
-                            <a href="#" class="btn-link">office@example.com</a>
+                            <a href="#" class="btn-link">diskimtaru@tegalkota.go.id</a>
                             <br>
                             <strong>Phone:</strong>
-                            +1 215-606-0391
+                            +62283 358165
                             <br>
-                            <strong>Skype: </strong>
-                            real.estate1
+                            <strong>Website: </strong>
+                            disperkim.tegalkota.go.id 
                         </address>
                     </div>
 
@@ -302,25 +295,10 @@
             <div class="container">
 
                 <!--Copyright-->
-                <div class="ts-copyright"> 2020 Sistem Informasi Geografis Pemetaan Perumahan Di Kota Tegal</div>
+                <div class="ts-copyright">Copyright &copy; 2020 Sistem Informasi Geografis Pemetaan Perumahan Di Kota Tegal</div>
 
                 <!--Social Icons-->
-                <div class="ts-footer-nav">
-                    <nav class="nav">
-                        <a href="#" class="nav-link">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="nav-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="nav-link">
-                            <i class="fab fa-pinterest-p"></i>
-                        </a>
-                        <a href="#" class="nav-link">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </nav>
-                </div>
+                
                 <!--end ts-footer-nav-->
 
             </div>

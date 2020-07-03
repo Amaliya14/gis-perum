@@ -60,13 +60,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/perumahan')}}">
-                                Perumahan
-                            </a>
+                          <a class="dropdown-toggle" data-toggle="dropdown">
+                            Info Perumahan
+                          </a>
+                            <ul class="dropdown-menu">
+                              <li><a href="{{url('/perumahan')}}">Perumahan</a></li>
+                              <li><a href="{{url('/nama-pengembang')}}">Nama Pengembang</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{{url('/kontak')}}">
-                                Kontak
+                                Contact Us
                             </a>
                         </li>
                     </ul>
@@ -103,7 +107,7 @@
         <section id="page-title">
             <div class="container">
                 <div class="ts-title">
-                    <h1>Kontak</h1>
+                    <h1>Contact Us</h1>
                 </div>
                 <!--end ts-title-->
             </div>
@@ -115,18 +119,20 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                        <p class="h3">
-                            Phasellus quis scelerisque ligula. Sed gravida tincidunt purus at tincidunt. Etiam ac diam
-                            eu purus aliquam vehicula eleifend eget turpis. In finibus vel elit eget suscipit.
-                        </p>
-                        <p class="mb-5">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat tempor sapien. In
-                            lobortis posuere tincidunt. Curabitur malesuada tempus ligula nec maximus. Nam tortor arcu,
-                            tincidunt quis molestie non, sagittis dignissim ligula. Fusce est ipsum, pharetra in felis
-                            ac,
-                            lobortis volutpat diam.
-                        </p>
-                        <a href="contact.html" class="btn btn-primary">Contact us</a>
+                    <address class="ts-text-color-light">
+                            Dinas Perumahan Dan Kawasan Pemukiman Kota Tegal
+                            <br>
+                            Jl. Ki Gede Sebayu No.11 Tegal
+                            <br>
+                            <strong>Email: </strong>
+                            <a href="#" class="btn-link">diskimtaru@tegalkota.go.id</a>
+                            <br>
+                            <strong>Phone:</strong>
+                            +62283 358165
+                            <br>
+                            <strong>Website: </strong>
+                            disperkim.tegalkota.go.id 
+                        </address>
                     </div>
                     <!--end col-md-8-->
                     <div class="col-md-4"></div>
@@ -143,34 +149,6 @@
 
 
         <!--TESTIMONIALS ****************************************************************************************-->
-        <section id="about-us-testimonials-carousel">
-            <div class="bg-white text-center py-5">
-                <div class="container">
-                    <div class="offset-lg-2 col-lg-8">
-                        <div class="owl-carousel" data-owl-items="1" data-owl-dots="1">
-
-                            <div class="ts-slide">
-                                <div class="ts-circle__sm" data-bg-image="assets/img/img-person-01.jpg"></div>
-                                <h5 class="my-3">Jane Doe</h5>
-                                <p class="h5 font-weight-normal ts-text-color-light">
-                                    Duis ac dolor et enim volutpat semper. Morbi placerat tempor ornare. Quisque
-                                    bibendum
-                                    ultrices diam, ac fermentum massa egestas quis.
-                                </p>
-                            </div>
-                            <!--end ts-slide-->
-
-
-
-                        </div>
-                        <!--end owl-carousel-->
-                    </div>
-                    <!--end offset-lg-2-->
-                </div>
-                <!--end container-->
-            </div>
-            <!--end ts-block-->
-        </section>
 
     </main>
     <!--end #ts-main-->
@@ -188,48 +166,38 @@
                         <a href="#" class="brand">
                             <img src="assets/img/logo.png" alt="">
                         </a>
-                        <p class="mb-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat tempor sapien.
-                            In lobortis posuere tincidunt. Curabitur malesuada tempus ligula nec maximus. Nam tortor
-                            arcu,
-                            tincidunt quis molestie non, sagittis dignissim ligula. Fusce est ipsum, pharetra in felis
-                            ac,
-                            lobortis volutpat diam.
-                        </p>
-                        <a href="#" class="btn btn-outline-dark mb-4">Contact Us</a>
                     </div>
-                    <!--end col-md-6-->
+                    
+                   <!--Navigation-->
                     <div class="col-md-2">
                         <h4>Navigation</h4>
                         <nav class="nav flex-row flex-md-column mb-4">
-                            <a href="#" class="nav-link">Home</a>
-                            <a href="#" class="nav-link">Listing</a>
-                            <a href="#" class="nav-link">About Us</a>
-                            <a href="#" class="nav-link">Sign In</a>
-                            <a href="#" class="nav-link">Register</a>
-                            <a href="#" class="nav-link">Submit Property</a>
+                            <a href="{{url('/')}}" class="nav-link">Home</a>
+                            <a href="{{url('/map')}}" class="nav-link">Peta</a>
+                            <a href="{{url('/perumahan')}}" class="nav-link">Perumahan</a>
+                            <a href="{{url('/kontak')}}" class="nav-link">Contact</a>
                         </nav>
                     </div>
-                    <!--end col-md-2-->
+
+                    <!--Contact Info-->
                     <div class="col-md-4">
                         <h4>Contact</h4>
                         <address class="ts-text-color-light">
-                            2590 Rocky Road
+                            Dinas Perumahan Dan Kawasan Pemukiman Kota Tegal
                             <br>
-                            Philadelphia, PA 19108
+                            Jl. Ki Gede Sebayu No.11 Tegal
                             <br>
                             <strong>Email: </strong>
-                            <a href="#" class="btn-link">office@example.com</a>
+                            <a href="#" class="btn-link">diskimtaru@tegalkota.go.id</a>
                             <br>
                             <strong>Phone:</strong>
-                            +1 215-606-0391
+                            +62283 358165
                             <br>
-                            <strong>Skype: </strong>
-                            real.estate1
+                            <strong>Website: </strong>
+                            disperkim.tegalkota.go.id 
                         </address>
-                        <!--end address-->
                     </div>
-                    <!--end col-md-4-->
+
                 </div>
                 <!--end row-->
             </div>
@@ -237,27 +205,15 @@
         </section>
         <!--end ts-footer-main-->
 
+        <!--SECONDARY FOOTER CONTENT
+        =============================================================================================================-->
         <section id="ts-footer-secondary">
             <div class="container">
-                <div class="ts-copyright">(C) 2018 ThemeStarz, All rights reserved</div>
+
+                <!--Copyright-->
+                <div class="ts-copyright">Copyright &copy; 2020 Sistem Informasi Geografis Pemetaan Perumahan Di Kota Tegal.</div>
                 <!--end ts-copyright-->
-                <div class="ts-footer-nav">
-                    <nav class="nav">
-                        <a href="#" class="nav-link">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="nav-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="nav-link">
-                            <i class="fab fa-pinterest-p"></i>
-                        </a>
-                        <a href="#" class="nav-link">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </nav>
-                    <!--end nav-->
-                </div>
+               
                 <!--end ts-footer-nav-->
             </div>
             <!--end container-->
