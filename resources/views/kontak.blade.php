@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -65,7 +64,7 @@
                           </a>
                             <ul class="dropdown-menu">
                               <li><a href="{{url('/perumahan')}}">Perumahan</a></li>
-                              <li><a href="{{url('/nama-pengembang')}}">Nama Pengembang</a></li>
+                              <li><a href="{{url('/nama-pengembang')}}">Data Pengembang</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

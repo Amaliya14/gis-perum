@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Perumahan;
 use App\Kecamatan;
+use App\Pengembang;
 
 class WelcomeController extends Controller
 {

@@ -14,4 +14,5 @@ class Pengembang extends Authenticatable
     public function perumahan(){
       return $this->belongsTo(Perumahan::class, 'id_perumahan','id');
     }
+
 }

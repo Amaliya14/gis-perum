@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -14,7 +13,7 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
 
-    <title>Gis Perum</title>
+    <title>Gis-Perum</title>
 
 </head>
 
@@ -66,13 +65,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{url('/perumahan')}}">
-                                Perumahan
-                            </a>
+                          <a class="dropdown-toggle" data-toggle="dropdown">
+                            Info Perumahan
+                          </a>
+                            <ul class="dropdown-menu">
+                              <li><a href="{{url('/perumahan')}}">Perumahan</a></li>
+                              <li><a href="{{url('/pengembang')}}">Data Pengembang</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/kontak')}}">
-                                Kontak
+                                Contact Us
                             </a>
                         </li>
                     </ul>
