@@ -19,6 +19,7 @@ Route::get('map','WelcomeController@map');
 Route::get('mapPerumahan','WelcomeController@mapPerumahan');
 Route::get('perumahan','WelcomeController@perumahan');
 Route::get('info-perumahan/{id}','WelcomeController@info')->name('info');
+Route::get('data-pengembang','WelcomeController@pengembang')->name('pengembang');
 Route::get('kontak','WelcomeController@kontak');
 Route::get('perumahan/cari','WelcomeController@cari')->name('cari');
 // Auth::routes();

@@ -58,18 +58,18 @@
                                 Peta
                             </a>
                         </li>
-                        <li class="nav-item">
-                          <a class="dropdown-toggle" data-toggle="dropdown">
-                            Info Perumahan
-                          </a>
-                            <ul class="dropdown-menu">
-                              <li><a href="{{url('/perumahan')}}">Perumahan</a></li>
-                              <li><a href="{{url('/pengembang')}}">Data Pengembang</a></li>
-                            </ul>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                Info Perumahan
+                            </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{url('/perumahan')}}">Perumahan</a>
+                                    <a class="dropdown-item" href="{{url('/data-pengembang')}}">Data Pengembang</a>
+                                </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/kontak')}}">
-                                Contact Us
+                                Contact 
                             </a>
                         </li>
                     </ul>
@@ -259,7 +259,8 @@
                             <a href="{{url('/')}}" class="nav-link">Home</a>
                             <a href="{{url('/map')}}" class="nav-link">Peta</a>
                             <a href="{{url('/perumahan')}}" class="nav-link">Perumahan</a>
-                            <a href="{{url('/kontak')}}" class="nav-link">Contact</a>
+                            <a href="{{url('/data-pengembang')}}" class="nav-link">Data Pengembang</a>
+                            <a href="{{url('/kontak')}}" class="nav-link">Contact Us</a>
                         </nav>
                     </div>
 

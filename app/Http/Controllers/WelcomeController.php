@@ -44,6 +44,11 @@ class WelcomeController extends Controller
       return view('info-perumahan', compact('perumahan'));
     }
 
+    public function pengembang(){
+    $data = Pengembang::all();
+    return view('data-pengembang',compact('data'));
+    }
+    
     public function kontak(){
       return view('kontak');
     }

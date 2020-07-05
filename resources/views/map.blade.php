@@ -57,18 +57,18 @@
                                 Peta
                             </a>
                         </li>
-                        <li class="nav-item">
-                          <a class="dropdown-toggle" data-toggle="dropdown">
-                            Info Perumahan
-                          </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="{{url('/perumahan')}}">Perumahan</a></li>
-                                <li><a href="{{url('/nama-pengembang')}}">Nama Pengembang</a></li>
-                              </ul>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                Info Perumahan
+                            </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{url('/perumahan')}}">Perumahan</a>
+                                    <a class="dropdown-item" href="{{url('/data-pengembang')}}">Data Pengembang</a>
+                                </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/kontak')}}">
-                                Contact Us
+                                Contact 
                             </a>
                         </li>
                     </ul>
