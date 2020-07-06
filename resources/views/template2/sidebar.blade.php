@@ -30,13 +30,6 @@
         </li>
 
         <li>
-          <a href="#" >
-            <i class="fa fa-circle-o text-blue"></i>
-            <span >Profil</span>
-            <span class="pull-right-container"></span>
-          </a>
-        </li>
-        <li>
           <a href="{{ route('admin-perum.logout') }}" onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
             <i class="fa fa-circle-o text-red"></i>

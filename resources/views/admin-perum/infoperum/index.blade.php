@@ -19,7 +19,7 @@
             <tr>
                 <th>No.</th>
                 <th>Foto</th>
-                <th>Kecamatan Perumahan</th>
+                <th>Nama Perumahan</th>
                 <th>Tipe</th>
                 <th>Harga</th>
                 <th>Keterangan</th>
