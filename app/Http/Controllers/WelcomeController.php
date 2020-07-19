@@ -18,6 +18,8 @@ class WelcomeController extends Controller
     public function map(){
       // $perumahan = Perumahan::with('info')->get();
       // dd($perumahan);
+      
+       // dd($perumahan);
       $kecamatan = Kecamatan::orderBy('kecamatan','ASC')->get();
       return view('map', compact('kecamatan'));
     }
@@ -25,7 +27,7 @@ class WelcomeController extends Controller
     public function mapPerumahan(){
 
       $perumahan = Perumahan::with('info')->whereHas('info', function($query){
-        $query->whereNotNull('created_at');
+        $query->whereNotNull('id_perumahan');
       })->get();
 
       return $perumahan;
@@ -33,7 +35,7 @@ class WelcomeController extends Controller
 
     public function perumahan(){
       $perumahan = Perumahan::whereHas('info', function($query){
-        $query->whereNotNull('created_at');
+        $query->whereNotNull('id_perumahan');
       })->paginate(6);
 
       return view('perumahan', compact('perumahan'));
@@ -57,7 +59,7 @@ class WelcomeController extends Controller
 
       $perumahan = Perumahan::where('nama_perumahan','LIKE','%'.$request->keyword.'%')
       ->whereHas('info', function($query){
-        $query->whereNotNull('created_at');
+        $query->whereNotNull('id_perumahan');
       })->paginate(6);
 
       return view('perumahan', compact('perumahan'));

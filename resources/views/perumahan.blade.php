@@ -174,38 +174,36 @@
                            </div> -->
 
                            <!--Card Image-->
-                           <a href="#" class="card-img" data-bg-image="{{asset('picture/'.$perum->info->foto)}}">
-                               <div class="ts-item__info-badge">
-                                   Rp. {{number_format($perum->info->harga,0,',','.')}} Juta
-                               </div>
-                               <figure class="ts-item__info">
-                                   <h4>{{$perum->nama_perumahan}}</h4>
-                                   <aside>
-                                       <i class="fa fa-map-marker mr-2"></i>
-                                       {{$perum->lokasi}}
-                                   </aside>
-                               </figure>
-                           </a>
+                          <!--Card Image-->
+                            <a href="detail-01.html" class="card-img ts-item__image" data-bg-image="{{asset('picture/'.$perum->info->foto)}}">
+                                <div class="ts-item__info-badge">Rp. {{number_format($perum->info->harga, 0, ',','.')}} Juta</div>
+                                <figure class="ts-item__info">
+                                    <h4>{{$perum->nama_perumahan}}</h4>
+                                    <aside>
+                                        <i class="fa fa-map-marker mr-2"></i>
+                                        {{$perum->lokasi}}
+                                    </aside>
+                                </figure>
+                            </a>
 
-                           <!--Card Body-->
-                           <div class="card-body">
-                               <div class="ts-description-lists">
-                                   <dl>
-                                       <dt>Luas Lahan Bangunan</dt>
-                                       <dd>{{$perum->luas_lahan_bangunan}} M<sup>2</sup></dd>
-                                   </dl>
-                                   <dl>
-                                       <dt>Jumlah Rumah</dt>
-                                       <dd>{{$perum->jumlah_rumah}} Unit</dd>
-                                   </dl>
-                               </div>
-                           </div>
+                            <!--Card Body-->
+                            <div class="card-body">
+                                <div class="ts-description-lists">
+                                  <dl>
+                                      <dt>Luas Lahan Bangunan</dt>
+                                      <dd>{{$perum->luas_lahan_bangunan}} M<sup>2</sup></dd>
+                                  </dl>
+                                  <dl>
+                                      <dt>Jumlah Rumah</dt>
+                                      <dd>{{$perum->jumlah_rumah}} Unit</dd>
+                                  </dl>
+                                </div>
+                            </div>
 
-                           <!--Card Footer-->
-                           <a href="{{route('info', $perum->id)}}" class="card-footer">
-                               <span class="ts-btn-arrow">Detail</span>
-                           </a>
-
+                            <!--Card Footer-->
+                            <a href="{{route('info', $perum->id)}}" class="card-footer">
+                                <span class="ts-btn-arrow">Detail</span>
+                            </a>
                        </div>
                        <!--end ts-item-->
                    </div>

@@ -117,7 +117,7 @@
       marker.setLngLat({lng: long.value,lat: lat.value}).addTo(map);
     }
 
-    map.on('click', function(e){
+    map.on('click', async function(e){
       lat.value = e.lngLat.lat;
       long.value = e.lngLat.lng;
       const pos = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${e.lngLat.lng},${e.lngLat.lat}.json?types=poi&lang=id&access_token=pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczMW15eHVlYXBhZW4ifQ.uqVd8rK5Oe49IjUREFnfgw`)

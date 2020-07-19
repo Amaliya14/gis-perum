@@ -217,10 +217,9 @@
 
                             <h3>Keterangan</h3>
 
-                            <p>
-                              {{$perumahan->info->keterangan}}
-                            </p>
-
+                            <td>
+                              {!!nl2br(e($perumahan->info->keterangan))!!}
+                            </td>
                         </section>
 
                         <!--FEATURES

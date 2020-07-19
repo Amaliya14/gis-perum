@@ -126,7 +126,7 @@
                           <th>Perumahan</th>
                           <th>Email</th>
                           <th>Alamat</th>
-                          <th width="15%">No Telepon</>
+                          <th width="15%">No Telepon</th>
                       </tr>
                             </thead>
                             <tbody>
@@ -138,11 +138,10 @@
                                 <td>{{ $item->perumahan->nama_perumahan }}</td>
                                 <td>{{ $item->email }}</td>
                                 <td>{{$item->alamat}}</td>
-                                <td>{{ $item->no_tlpn }}</>
-                                <td>
-                            </tr>
+                                <td>{{ $item->no_tlpn }}</td>
                             @endforeach
                         </tbody>
+                    </tr>
                     </table>
             </div>
             <!--end container-->

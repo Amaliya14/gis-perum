@@ -37,11 +37,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('admin.login')}}">{{ __('Login') }}</a>
+                                <a class="nav-link active" href="{{route('admin.login')}}">{{ __('Login') }}</a>
                             </li>
 
                              <li class="nav-item">
-                                <a class="nav-link" href="{{route('admin-perum.login')}}">{{ __('Login Perum') }}</a>
+                                <a class="nav-link active" href="{{route('admin-perum.login')}}">{{ __('Login Perum') }}</a>
                             </li>
 
                             @if (Route::has('register'))

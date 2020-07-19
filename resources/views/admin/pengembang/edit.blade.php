@@ -33,6 +33,7 @@
         </div>
 
         <div class="form-group">
+          <label for="nama_perumahan">Nama Perumahan:</label>
           <select class="form-control" name="id_perumahan">
             @foreach($perumahan as $p)
             @if(!$p->pengembang || $p->pengembang->id == $pengembang->id)
