@@ -70,7 +70,7 @@
                         @csrf
                         @method('DELETE')
                       <div class="modal-body">
-                        Hapus Perumahan {{$perumahan->nama_perumahan}} ?
+                        Yakin Anda Ingin Menghapus Perumahan ?
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

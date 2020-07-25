@@ -8,24 +8,43 @@
     <div class="container">
       <h2><i>Tambah Data Perumahan</i></h2>
       <br/>
+
+    @if ($errors->any())
+    <div class="col-md-11">
+        <div class="alert alert-danger">
+          <strong>Whoops!</strong>Ada beberapa masalah dengan input Anda.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
       <form action="{{url('admin/perumahan/simpan')}}" method="post" enctype="multipart/form-data" >
         <div class="col-md-11">
         @csrf
         <div class="form-group">
           <label for="nama_perumahan">Nama Perumahan:</label>
-          <input type="text" class="form-control" value="{{old('nama_perumahan')}}" name="nama_perumahan">
+            <input type="text" class="form-control" value="{{old('nama_perumahan')}}" name="nama_perumahan">
+              @if ($errors->has('nama_perumahan'))
+                <span class="text-danger">{{ $errors->first('nama_perumahan') }}</span>
+              @endif
         </div>
 
         <div class="form-group">
           <label for="lokasi">Lokasi:</label>
-            <textarea class="form-control" value="{{old('lokasi')}}" name="lokasi"></textarea>
+            <textarea class="form-control" value="{{old('lokasi')}}" name="lokasi" ></textarea>
+            @if ($errors->has('lokasi'))
+                <span class="text-danger">{{ $errors->first('lokasi') }}</span>
+              @endif
         </div>
 
         <div class="row">
           <div class="col-sm-4">
              <div class="form-group">
           <label for="kecamatan">Kecamatan:</label>
-            <select class="form-control" name="kecamatan">
+            <select class="form-control" name="kecamatan" required="required">
               @foreach($kecamatan as $k)
               <option value="{{$k->kecamatan}}" {{old('kecamatan') === $k->kecamatan ? 'selected' : ''}}>
                 {{$k->kecamatan}}
@@ -34,18 +53,26 @@
             </select>
             </div>
           </div>
+
           <div class="col-sm-4">
             <div class="form-group">
-            <label for="jumlah_rumah">Jumlah Rumah:</label>
-            <input type="number" class="form-control" value="{{old('jumlah_rumah')}}" name="jumlah_rumah">
+              <label for="jumlah_rumah">Jumlah Rumah:</label>
+                <input type="number" class="form-control" value="{{old('jumlah_rumah')}}" name="jumlah_rumah">
+                  @if ($errors->has('jumlah_rumah'))
+                    <span class="text-danger">{{ $errors->first('jumlah_rumah') }}</span>
+                  @endif
             </div>
           </div>
+
            <div class="col-sm-4">
-           <label>Luas Lahan Bangunan:</label>
+            <label>Luas Lahan Bangunan:</label>
               <div class="input-group">
               <input type="number" name="luas_lahan_bangunan" value="{{old('luas_lahan_bangunan')}}" class="form-control" aria-describedby="basic-addon2">
-              <span class="input-group-addon" id="basic-addon2">M<sup>2</sup></span>
+                  <span class="input-group-addon" id="basic-addon2">M<sup>2</sup></span>
             </div>
+            @if ($errors->has('luas_lahan_bangunan'))
+                      <span class="text-danger">{{ $errors->first('luas_lahan_bangunan') }}</span>
+                    @endif
           </div>
         </div>
 
@@ -54,15 +81,23 @@
            <div class="form-group">
           <label for="latitude">Latitude:</label>
             <input type="text" class="form-control" value="{{old('latitude')}}" id="latitude" name="latitude">
+              @if ($errors->has('latitude'))
+                <span class="text-danger">{{ $errors->first('latitude') }}</span>
+              @endif
         </div>
-        </div>
+      </div>
+
         <div class="col-sm-6">
             <div class="form-group">
           <label for="longitude">Longitude:</label>
             <input type="text" class="form-control" value="{{old('longitude')}}" id="longitude" name="longitude">
-        </div>
+              @if ($errors->has('longitude'))
+                <span class="text-danger">{{ $errors->first('longitude') }}</span>
+              @endif
         </div>
       </div>
+      </div>
+
         <div id="map" style="width: 1020px; height: 400px; margin-bottom: 10px"></div>
 
           <div class="form-group">

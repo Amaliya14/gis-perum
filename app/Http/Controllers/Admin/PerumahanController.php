@@ -48,9 +48,9 @@ class PerumahanController extends Controller
         // dd($request->all());
 
         $request->validate([
-            'nama_perumahan' => 'required',
+            'nama_perumahan' => 'required|min:5|max:50',
             'lokasi' => 'required',
-            'kecamatan' => 'required',
+            'kecamatan' => 'required|min:5|max:50',
             'jumlah_rumah' => 'required',
             'luas_lahan_bangunan' => 'required',
             'latitude' => 'required',

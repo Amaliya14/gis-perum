@@ -46,7 +46,7 @@ class InfoPerumController extends Controller
         $request->validate([
             'nama_perumahan' => 'required',
             'tipe' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|numeric',
             'Keterangan' => 'required',
             'foto' => 'required',
         ]);
@@ -90,8 +90,9 @@ class InfoPerumController extends Controller
     public function update(Request $request)
     {
         $request->validate([
+            'nama_perumahan' => 'required',
             'tipe' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|numeric',
             'keterangan' => 'required',
         ]);
 

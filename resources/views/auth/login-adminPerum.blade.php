@@ -41,8 +41,8 @@
         <form class="user">
           <div class="form-group">
           <div class="col-xs-10">
-            <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" name="email" required autocomplete="email" placeholder="Enter Email..." autofocus>
-                @error('email')
+            <input type="username" class="form-control form-control-user @error('username') is-invalid @enderror" name="username" required autocomplete="username" placeholder="Enter Username..." autofocus>
+                @error('username')
                 <span class="invalid-feedback" role="alert">
                    <strong>{{ $message }}</strong>
                 </span>
@@ -73,12 +73,6 @@
     </form>
                   
     <hr>
-    <div class="text-right">
-      <a class="small" href="forgot-password.html">Forgot Password?</a>
-    </div>
-    <div class="text-right">
-      <a class="small" href="register.html">Create an Account!</a>
-    </div>
     </div>
     </div>
     </div>

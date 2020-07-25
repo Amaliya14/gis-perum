@@ -43,7 +43,7 @@ class KecamatanController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'kecamatan' => 'required',
+            'kecamatan' => 'required|min:5|max:20',
          ]);
   
         Kecamatan::create($request->all());
@@ -86,7 +86,7 @@ class KecamatanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'kecamatan' => 'required',
+            'kecamatan' => 'required|min:5|max:20',
          ]);
 
         $data = [

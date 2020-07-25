@@ -16,7 +16,7 @@ class CreateAdminPerumsTable extends Migration
         Schema::create('admin_perums', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('email')->unique();
+            $table->string('username')->unique();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

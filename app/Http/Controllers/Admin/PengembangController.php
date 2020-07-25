@@ -47,15 +47,15 @@ class PengembangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
-            'email' => 'required',
+            'nama' => 'required|min:5|max:50',
+            'username' => 'required|min:3|max:20',
             'alamat' => 'required',
-            'no_tlpn' => 'required',
+            'no_tlpn' => 'required|numeric',
         ]);
 
         $data = [
             'nama' =>$request->nama,
-            'email' =>$request->email,
+            'username' =>$request->username,
             'alamat' =>$request->alamat,
             'no_tlpn' =>$request->no_tlpn,
             'id_perumahan' => $request->id_perumahan,
@@ -104,14 +104,14 @@ class PengembangController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required',
-            'email' => 'required',
+            'nama' => 'required|min:5|max:50',
+            'username' => 'required|min:3|max:20',
             'alamat' => 'required',
-            'no_tlpn' => 'required',
+            'no_tlpn' => 'required|numeric',
         ]);
         $data = [
             'nama' =>$request->nama,
-            'email' =>$request->email,
+            'username' =>$request->username,
             'alamat' =>$request->alamat,
             'no_tlpn' =>$request->no_tlpn,
             'id_perumahan' => $request->id_perumahan,

@@ -17,7 +17,7 @@ class CreatePengembangTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('id_perumahan')->unsigned();
             $table->string('nama'); //membuat kolom nama
-            $table->string('email'); //membuat kolom email
+            $table->string('username'); //membuat kolom email
             $table->string('password');
             $table->text('alamat'); //membuat kolom alamat dengan tipe text
             $table->string('no_tlpn'); //membuat kolom no tlpn

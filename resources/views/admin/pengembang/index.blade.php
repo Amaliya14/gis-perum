@@ -33,7 +33,7 @@
               <th>No.</th>
               <th>Nama</th>
               <th>Perumahan</th>
-              <th>Email</th>
+              <th>Username</th>
               <th>Alamat</th>
               <th width="15%">No Telepon</th>
               <th width="15%">Action</th>
@@ -46,19 +46,34 @@
                     <td>{{ $no++ }}</td>
                     <td>{{ $pengembang->nama }}</td>
                     <td>{{ $pengembang->perumahan->nama_perumahan }}</td>
-                    <td>{{ $pengembang->email }}</td>
+                    <td>{{ $pengembang->username }}</td>
                     <td>{{ $pengembang->alamat }}</td>
                     <td>{{ $pengembang->no_tlpn }}</td>
                     <td>
-            <form action="{{ url('admin/pengembang/destroy', $pengembang->id) }}" method="post">
-
             <a class="btn btn-warning glyphicon glyphicon-pencil" type="button" href="{{ url('admin/pengembang/edit', $pengembang->id) }}"></a>
 
-            @csrf
-                <button class="btn btn-danger glyphicon glyphicon-trash" type="submit" onclick="return confirm('Yakin ingin menghapus data?')"></button>
-            </td>
-          </tr>
-        </form>
+                  <button class="btn btn-danger glyphicon glyphicon-trash" type="button" data-toggle="modal" data-target="#hapus{{$pengembang->id}}"></button>
+
+                  <div class="modal fade" id="hapus{{$pengembang->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header bg-danger">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Hapus Pengembang</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form method="post" action="{{route('admin.destroy', $pengembang->id)}}">
+                        @csrf
+                        @method('DELETE')
+                      <div class="modal-body">
+                        Yakin Anda Ingin Menghapus Pengembang ?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                      </div>
+                      </form>
        @endforeach
      </tbody>
     </table>

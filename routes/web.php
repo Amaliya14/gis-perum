@@ -35,14 +35,14 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::post('kec/simpan','Admin\KecamatanController@store')->name('admin.simpan');
 	Route::get('kec/edit/{id}', 'Admin\KecamatanController@edit')->name('admin.edit');
     Route::post('kec/update/{id}','Admin\KecamatanController@update')->name('admin.update');
-    Route::post('kec/destroy/{id}','Admin\KecamatanController@destroy')->name('admin.destroy');
+    Route::delete('kec/destroy/{id}','Admin\KecamatanController@destroy')->name('admin.destroy');
 
 	Route::get('pengembang', 'Admin\PengembangController@index')->name('admin.pengembang');
 	Route::get('pengembang/create','Admin\PengembangController@create')->name('admin.create');
 	Route::post('pengembang/simpan','Admin\PengembangController@store')->name('admin.simpan');
 	Route::get('pengembang/edit/{id}', 'Admin\PengembangController@edit')->name('admin.edit');
     Route::post('pengembang/update/{id}','Admin\PengembangController@update')->name('admin.update');
-    Route::post('pengembang/destroy/{id}','Admin\PengembangController@destroy')->name('admin.destroy');
+    Route::delete('pengembang/destroy/{id}','Admin\PengembangController@destroy')->name('admin.destroy');
 
     Route::get('perumahan', 'Admin\PerumahanController@index')->name('admin.perumahan');
 	Route::get('perumahan/create','Admin\PerumahanController@create')->name('admin.create');

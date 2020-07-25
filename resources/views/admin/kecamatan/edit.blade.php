@@ -18,7 +18,6 @@
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
-                       <li>{{'ada error'}}</li>
             </ul>
         </div>
     @endif
@@ -29,7 +28,10 @@
        
         <div class="form-group">
           <label for="kecamatan">Nama Kecamatan:</label>
-          <input type="text" class="form-control" id="kecamatan" name="kecamatan" value="{{$kecamatan->kecamatan}}">
+            <input type="text" class="form-control" id="kecamatan" name="kecamatan" value="{{$kecamatan->kecamatan}}">
+              @if ($errors->has('kecamatan'))
+                <span class="text-danger">{{ $errors->first('kecamatan') }}</span>
+              @endif
         </div>
 
         <div class="form-group">

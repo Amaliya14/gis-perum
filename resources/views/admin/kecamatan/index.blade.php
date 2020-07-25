@@ -43,21 +43,36 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $kecamatan->kecamatan }}</td>
                         <td>
-                <form action="{{ url('admin/kec/destroy', $kecamatan->id) }}" method="post">
+                <a class="btn btn-warning glyphicon glyphicon-pencil" type="button" href="{{ url('admin/kec/edit', $kecamatan->id) }}"></a>
 
-                <a class="btn btn-warning glyphicon glyphicon-pencil" type="button" href="{{ url('admin/kec/edit', $kecamatan->id) }}"> Edit</a>
+                  <button class="btn btn-danger glyphicon glyphicon-trash" type="button" data-toggle="modal" data-target="#hapus{{$kecamatan->id}}"></button>
 
-                @csrf
-                    <button class="btn btn-danger glyphicon glyphicon-trash" type="submit" onclick="return confirm('Yakin ingin menghapus data?')"> Delete</button>
-                </td>
-              </tr>
+                  <div class="modal fade" id="hapus{{$kecamatan->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header bg-danger">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Hapus Kecamatan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <form method="post" action="{{route('admin.destroy', $kecamatan->id)}}">
+                        @csrf
+                        @method('DELETE')
+                      <div class="modal-body">
+                        Yakin Anda Ingin Menghapus Kecamatan ?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                      </div>
+                      </form>
              @endforeach
             </tbody>
         </table>
       </div>
     </section>
   </div>
-
 @endsection
 
 @section('script')

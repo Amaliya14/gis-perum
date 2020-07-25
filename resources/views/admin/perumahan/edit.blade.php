@@ -13,12 +13,12 @@
 
       @if ($errors->any())
         <div class="alert alert-danger">
+                  <div class="col-md-11">
             <strong>Whoops!</strong>Ada beberapa masalah dengan input Anda.<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
-                       <li>{{'ada error'}}</li>
             </ul>
         </div>
     @endif
@@ -30,12 +30,18 @@
 
         <div class="form-group">
           <label for="nama_perumahan">Nama Perumahan:</label>
-          <input type="text" class="form-control" id="nama_perumahan" name="nama_perumahan" value="{{old('nama_perumahan',$perumahan->nama_perumahan)}}">
+            <input type="text" class="form-control" id="nama_perumahan" name="nama_perumahan" value="{{old('nama_perumahan',$perumahan->nama_perumahan)}}">
+              @if ($errors->has('nama_perumahan'))
+                <span class="text-danger">{{ $errors->first('nama_perumahan') }}</span>
+              @endif
         </div>
 
        <div class="form-group">
           <label for="lokasi">Lokasi:</label>
             <textarea class="form-control" id="lokasi" name="lokasi">{{old('lokasi',$perumahan->lokasi)}}</textarea>
+            @if ($errors->has('lokasi'))
+                <span class="text-danger">{{ $errors->first('lokasi') }}</span>
+              @endif
         </div>
 
         <div class="row">
@@ -55,34 +61,51 @@
             </select>
             </div>
           </div>
+
           <div class="col-sm-4">
             <div class="form-group">
-            <label for="jumlah_rumah">Jumlah Rumah:</label>
-            <input type="number" class="form-control" value="{{old('jumlah_rumah', $perumahan->jumlah_rumah)}}" name="jumlah_rumah">
+              <label for="jumlah_rumah">Jumlah Rumah:</label>
+                <input type="number" class="form-control" value="{{old('jumlah_rumah', $perumahan->jumlah_rumah)}}" name="jumlah_rumah">
+                  @if ($errors->has('jumlah_rumah'))
+                    <span class="text-danger">{{ $errors->first('jumlah_rumah') }}</span>
+                  @endif
             </div>
           </div>
-           <div class="col-sm-4">
+
+          <div class="col-sm-4">
            <label>Luas Lahan Bangunan:</label>
             <div class="input-group">
-            <input type="number" name="luas_lahan_bangunan" value="{{old('luas_lahan_bangunan', $perumahan->luas_lahan_bangunan)}}" class="form-control" aria-describedby="basic-addon2">
-            <span class="input-group-addon" id="basic-addon2">M<sup>2</sup></span>
+              <input type="number" name="luas_lahan_bangunan" value="{{old('luas_lahan_bangunan', $perumahan->luas_lahan_bangunan)}}" class="form-control" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="basic-addon2">M<sup>2</sup></span>
+                  @if ($errors->has('luas_lahan_bangunan'))
+                    <span class="text-danger">{{ $errors->first('luas_lahan_bangunan') }}</span>
+                  @endif
           </div>
         </div>
       </div>
+
         <div class="row" style="margin-top: 5px">
           <div class="col-sm-6">
              <div class="form-group">
             <label for="latitude">Latitude:</label>
               <input type="text" class="form-control" value="{{old('latitude', $perumahan->latitude)}}" id="latitude" name="latitude">
+                @if ($errors->has('latitude'))
+                  <span class="text-danger">{{ $errors->first('latitude') }}</span>
+                @endif
           </div>
-          </div>
+        </div>
+
           <div class="col-sm-6">
               <div class="form-group">
             <label for="longitude">Longitude:</label>
               <input type="text" class="form-control" value="{{old('longitude', $perumahan->longitude)}}" id="longitude" name="longitude">
+                @if ($errors->has('longitude'))
+                  <span class="text-danger">{{ $errors->first('longitude') }}</span>
+                @endif
           </div>
           </div>
         </div>
+        
         <div id="map" style="width: 1020px; height: 400px; margin-bottom: 10px"></div>
 
         <div class="form-group">

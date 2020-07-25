@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class AdminPerum extends Authenticatable
 {
+    use Notifiable;
+
     protected $table = 'admin_perums';
     protected $guarded = [];
 

@@ -14,7 +14,7 @@ class AdminPerumSeeder extends Seeder
     {
          AdminPerum::create([
         	'nama' => 'Perum 1',
-        	'email' => 'perum@gmail.com',
+        	'username' => 'perum',
         	'password' => bcrypt('12345678')
         ]);
     }

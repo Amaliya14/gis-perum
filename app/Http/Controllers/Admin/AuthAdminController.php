@@ -24,9 +24,10 @@ class AuthAdminController extends Controller
 
     	if(Auth::guard('admin')->attempt($credentials, $request->member)){
     		return redirect()->route('admin.dashboard');
-    	}
+    	}else{
 
-    	return redirect()->back()->with('message','Gagal Login');
+    	return redirect()->back()->with('message','Username dan Password salah!!!');
+        }
     }
 
     public function logout(){
