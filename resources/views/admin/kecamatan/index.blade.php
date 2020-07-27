@@ -56,7 +56,7 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <form method="post" action="{{route('admin.destroy', $kecamatan->id)}}">
+                      <form method="post" action="{{route('admin.kec.destroy', $kecamatan->id)}}">
                         @csrf
                         @method('DELETE')
                       <div class="modal-body">

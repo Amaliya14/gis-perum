@@ -139,7 +139,7 @@ class PerumahanController extends Controller
     public function destroy($id)
     {
         $perumahan = Perumahan::find($id);
-        $perumahan->delete();
+        $perumahan->delete();  
 
         return redirect('admin/perumahan')->with('success', 'Data berhasil dihapus!');
     }

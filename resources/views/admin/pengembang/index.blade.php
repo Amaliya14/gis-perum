@@ -63,7 +63,7 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <form method="post" action="{{route('admin.destroy', $pengembang->id)}}">
+                      <form method="post" action="{{route('admin.pengembang.destroy', $pengembang->id)}}">
                         @csrf
                         @method('DELETE')
                       <div class="modal-body">
