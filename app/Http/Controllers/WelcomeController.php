@@ -9,6 +9,10 @@ use App\Pengembang;
 
 class WelcomeController extends Controller
 {
+    public function coba(){
+      return view('coba');
+    }
+
     public function home(){
       $perumahan = Perumahan::with('info')->get();
       // dd($perumahan);

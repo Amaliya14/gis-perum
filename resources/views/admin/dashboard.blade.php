@@ -54,7 +54,96 @@
           </div>
         </div>
         <!-- ./col -->
+
+<!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- Bar chart -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title"><b>Grafik Marker</b></h3>
+
+            </div>
+            <div class="box-body">
+              
+              <div id="chartdiv"></div>
+            </div>
+            <!-- /.box-body-->
+          </div>
+          <!-- /.box -->
+            </div>
+            <!-- /.box-body -->
+          </div>
       </div>
   </section>
+  @endsection
+@section('script')
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+// Export
+chart.exporting.menu = new am4core.ExportMenu();
+
+// Data for both series
+chart.data = [
+  <?php foreach ($perkecamatan as $per): ?>
+    {
+     "year" : "{{$per->kecamatan}}",
+     "income"  : "{{$per->perkecamatan}}",
+     "color": chart.colors.next()
+    },
+  <?php endforeach ?>
+];
+
+
+/* Create axes */
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "year";
+categoryAxis.renderer.minGridDistance = 30;
+
+/* Create value axis */
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+/* Create series */
+var columnSeries = chart.series.push(new am4charts.ColumnSeries());
+columnSeries.name = "Income";
+columnSeries.dataFields.valueY = "income";
+columnSeries.dataFields.categoryX = "year";
+
+columnSeries.columns.template.tooltipText = "{categoryX} Terdapat {valueY} Perumahan";
+columnSeries.columns.template.propertyFields.fillOpacity = "fillOpacity";
+columnSeries.columns.template.propertyFields.stroke = "stroke";
+columnSeries.columns.template.propertyFields.fill = "color";
+columnSeries.columns.template.propertyFields.strokeWidth = "strokeWidth";
+columnSeries.columns.template.propertyFields.strokeDasharray = "columnDash";
+columnSeries.tooltip.label.textAlign = "middle";
+
+
+var circle = bullet.createChild(am4core.Circle);
+circle.radius = 4;
+
+circle.fill = am4core.color("#fff");
+circle.strokeWidth = 3;
+
+chart.data = data;
+
+}); // end am4core.ready()
+</script>
 
 @endsection

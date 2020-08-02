@@ -117,6 +117,10 @@
                               <option value="{{$k->kecamatan}}">{{$k->kecamatan}}</option>
                               @endforeach
                           </select>
+                          <select class="custom-select my-2" id="desa" name="category">
+                              <option value="">Desa</option>
+                          </select>
+                           
                           <div class="form-group my-2">
                               <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Nama Perumahan">
                           </div>

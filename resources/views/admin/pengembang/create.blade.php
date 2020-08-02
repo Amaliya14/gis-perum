@@ -34,14 +34,12 @@
         </div>
 
         <div class="form-group">
-          <label for="perumahan">Perumahan:</label>
+          <label for="nama_perumahan">Perumahan:</label>
             <select class="form-control" name="id_perumahan" required="required">
               @foreach($perumahan as $p)
-              @if(!$p->pengembang)
-              <option value="{{$p->id}}">
-                {{$p->nama_perumahan}}
+              <option value="{{$p->nama_perumahan}}" {{old('nama_perumahan') === $p->perumahan ? 'selected' : ''}}>
+              {{$p->nama_perumahan}}
               </option>
-              @endif
               @endforeach
             </select>
         </div>

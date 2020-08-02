@@ -15,6 +15,7 @@
 //     return view('welcome');
 // });
 Route::get('/','WelcomeController@home');
+Route::get('coba','WelcomeController@coba');
 Route::get('map','WelcomeController@map');
 Route::get('mapPerumahan','WelcomeController@mapPerumahan');
 Route::get('perumahan','WelcomeController@perumahan');

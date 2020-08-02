@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Pengembang;
 use App\Perumahan;
 use App\Kecamatan;
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,6 +25,8 @@ class DashboardController extends Controller
 		$kecamatan = Kecamatan::all();
 		$jumlahkecamatan = $kecamatan->count();
 
-		return view('admin/dashboard', compact('jumlahperumahan', 'jumlahpengembang', 'jumlahkecamatan'));
+		$perkecamatan = DB::select('SELECT kecamatan, COUNT(kecamatan) as perkecamatan FROM `perumahan` GROUP BY kecamatan');
+
+		return view('admin/dashboard', compact('jumlahperumahan', 'jumlahpengembang', 'jumlahkecamatan', 'perkecamatan'));
 	}
 }
