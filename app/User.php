@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    protected $guarded = [];
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }

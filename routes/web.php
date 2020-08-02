@@ -24,6 +24,11 @@ Route::get('kontak','WelcomeController@kontak');
 Route::get('perumahan/cari','WelcomeController@cari')->name('cari');
 // Auth::routes();
 
+//pengguna
+Route::post('login','User\AuthUserController@login')->name('users.login');
+Route::post('register','User\AuthUserController@register')->name('users.register');
+Route::get('logout','User\AuthUserController@logout')->name('users.logout');
+
 Route::group(['prefix' => 'admin'], function(){
 	Route::get('login','Admin\AuthAdminController@showLogin')->name('admin.show.login');
 	Route::post('login','Admin\AuthAdminController@login')->name('admin.login');

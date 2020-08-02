@@ -32,7 +32,7 @@
               <h2 class="text-dark">Sistem Informasi Geografis Pemetaan Perumahan Di Kota Tegal</h2>
             </div>
         </nav>
-        <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-light">
+        <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-dark">
             <div class="container">
 
                 <!--Brand Logo-->
@@ -80,6 +80,29 @@
                         </li>
                     </ul>
 
+                    <ul class="navbar-nav ml-auto">
+                    
+                        @auth('pengguna')
+                        <li class="nav-item-dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                           {{ Auth::user()->nama }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{route('users.logout')}}">Logout</a>
+                                </div>
+</li>
+                        @endauth
+
+                        @guest('pengguna')
+                        <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#modalLoginForm">
+                                Login
+                            </a>
+                           
+                            </li>
+                        @endguest
+                        
+                    </ul>
                 </div>
                 <!--end navbar-collapse-->
             </div>
@@ -188,6 +211,7 @@
 
     </main>
     <!--end #ts-main-->
+    @include('modal')
 
     <!--*********************************************************************************************************-->
     <!--************ FOOTER *************************************************************************************-->
