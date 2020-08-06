@@ -11,7 +11,7 @@ class AuthUserController extends Controller
 {
     public function login(Request $request){
     	$credentials = [
-    		'email' => $request->username,
+    		'email' => $request->email,
     		'password' => $request->password
     	];
 
