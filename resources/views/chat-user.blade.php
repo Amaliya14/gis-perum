@@ -273,8 +273,13 @@ img{ max-width:100%;}
               <div class="chat_people">
                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                 <div class="chat_ib">
+                  @if(empty($chat->pengembang))
+                  <h5>{{$chat->nama}} <span class="chat_date">{{date('d, M Y', strtotime($chat->created_at))}}</span></h5>
+                  <p>''</p>
+                  @else
                   <h5>{{$chat->pengembang->nama}} <span class="chat_date">{{date('d, M Y', strtotime($chat->created_at))}}</span></h5>
                   <p>{{$chat->isi_chat}}</p>
+                  @endif
                 </div>
               </div>
             </div>

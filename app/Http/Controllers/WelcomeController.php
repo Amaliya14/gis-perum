@@ -72,7 +72,13 @@ class WelcomeController extends Controller
       $id_admin = $id;
       $user =  Auth::user()->id;
       $chat = Chats::with(['pengembang','user'])->where('id_user',$user)->where('id_admin',$id_admin)->where('pengirim','admin')->orderBy('id','DESC')->first();
-      return view('chat-user',compact('id_admin','chat'));
+      if (empty($chat)) {
+        $chat = Pengembang::where('id',$id_admin)->first();
+        return view('chat-user',compact('id_admin','chat'));
+      }else{
+        return view('chat-user',compact('id_admin','chat'));
+      }
+
     }
 
     public function apiChat(Request $request){
