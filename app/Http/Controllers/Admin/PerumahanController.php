@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Auth;
 use App\Perumahan;
 use App\Kecamatan;
+use App\Kelurahan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Storage;
@@ -34,7 +35,8 @@ class PerumahanController extends Controller
     public function create()
     {
         $kecamatan = Kecamatan::orderBy('kecamatan','ASC')->get();
-        return view('admin.perumahan.create', compact('kecamatan'));
+        $kelurahan = Kelurahan::orderBy('kelurahan','ASC')->get();
+        return view('admin.perumahan.create', compact('kecamatan', 'kelurahan'));
     }
 
     /**
@@ -51,6 +53,7 @@ class PerumahanController extends Controller
             'nama_perumahan' => 'required|min:5|max:50',
             'lokasi' => 'required',
             'kecamatan' => 'required|min:5|max:50',
+            'kelurahan' => 'required|min:5|max:50',
             'jumlah_rumah' => 'required',
             'luas_lahan_bangunan' => 'required',
             'latitude' => 'required',
@@ -60,6 +63,7 @@ class PerumahanController extends Controller
             'nama_perumahan' => $request->nama_perumahan,
             'lokasi' => $request->lokasi,
             'kecamatan' => $request->kecamatan,
+            'kelurahan' => $request->kelurahan,
             'jumlah_rumah' => $request->jumlah_rumah,
             'luas_lahan_bangunan' => $request->luas_lahan_bangunan,
             'latitude' => $request->latitude,
@@ -90,7 +94,8 @@ class PerumahanController extends Controller
     {
         $perumahan = Perumahan::find($id);
         $kecamatan = Kecamatan::orderBy('kecamatan','ASC')->get();
-        return view('admin.perumahan.edit', compact('perumahan', 'kecamatan'));
+        $kelurahan = Kelurahan::orderBy('kelurahan','ASC')->get();
+        return view('admin.perumahan.edit', compact('perumahan', 'kecamatan', 'kelurahan'));
     }
 
     /**
@@ -106,6 +111,7 @@ class PerumahanController extends Controller
             'nama_perumahan' => 'required',
             'lokasi' => 'required',
             'kecamatan' => 'required',
+            'kelurahan' => 'required',
             'jumlah_rumah' => 'required',
             'luas_lahan_bangunan' => 'required',
             'latitude' => 'required',
@@ -118,6 +124,7 @@ class PerumahanController extends Controller
             'nama_perumahan'=>$request->nama_perumahan,
             'lokasi' =>$request->lokasi,
             'kecamatan' =>$request->kecamatan,
+            'kelurahan' =>$request->kelurahan,
             'jumlah_rumah' =>$request->jumlah_rumah,
             'luas_lahan_bangunan' =>$request->luas_lahan_bangunan,
             'latitude' =>$request->latitude,

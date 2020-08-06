@@ -6,15 +6,25 @@ use Illuminate\Http\Request;
 use App\Perumahan;
 use App\Kecamatan;
 use App\Pengembang;
+use App\Kelurahan;
+use DB;
+
 use App\Chats;
 use App\Response;
 use Auth;
 class WelcomeController extends Controller
 {
+    // public function grafik(){
+    // $perkecamatan = DB::select('SELECT kecamatan, COUNT(kecamatan) as perkecamatan FROM `perumahan` GROUP BY kecamatan');
+    //   return view('grafik', compact('perkecamatan'));
+    // }
+
     public function home(){
       $perumahan = Perumahan::with('info')->get();
       // dd($perumahan);
-      return view('welcome', compact('perumahan'));
+      $perkecamatan = DB::select('SELECT kecamatan, COUNT(kecamatan) as perkecamatan FROM `perumahan` GROUP BY kecamatan');
+      return view('welcome', compact('perumahan', 'perkecamatan'));
+
     }
 
     public function map(){
@@ -23,7 +33,8 @@ class WelcomeController extends Controller
       
        // dd($perumahan);
       $kecamatan = Kecamatan::orderBy('kecamatan','ASC')->get();
-      return view('map', compact('kecamatan'));
+      $kelurahan = Kelurahan::orderBy('kelurahan','ASC')->get();
+      return view('map', compact('kecamatan', 'kelurahan'));
     }
 
     public function mapPerumahan(){

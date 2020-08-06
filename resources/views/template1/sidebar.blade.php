@@ -39,6 +39,14 @@
           </a>
         </li>
 
+        <li class="@if(Request::is('admin/kelurahan')) active @endif">
+          <a href="{{url('admin/kelurahan')}}">
+            <i class="fa fa-pie-chart"></i>
+            <span>Data Kelurahan</span>
+            <span class="pull-right-container"></span>
+          </a>
+        </li>
+
         <li class="@if(Request::is('admin/perumahan') || Request::is('admin/perumahan/*') ) active @endif">
           <a href="{{url('admin/perumahan')}}">
             <i class="fa fa-book"></i>

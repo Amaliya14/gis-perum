@@ -15,6 +15,7 @@
 //     return view('welcome');
 // });
 Route::get('/','WelcomeController@home');
+Route::get('grafik','WelcomeController@grafik');
 Route::get('map','WelcomeController@map');
 Route::get('mapPerumahan','WelcomeController@mapPerumahan');
 Route::get('perumahan','WelcomeController@perumahan');
@@ -42,6 +43,13 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::get('kec/edit/{id}', 'Admin\KecamatanController@edit')->name('admin.kec.edit');
     Route::post('kec/update/{id}','Admin\KecamatanController@update')->name('admin.kec.update');
     Route::delete('kec/destroy/{id}','Admin\KecamatanController@destroy')->name('admin.kec.destroy');
+
+    Route::get('kelurahan', 'Admin\KelurahanController@index')->name('admin.kelurahan');
+	Route::get('kel/create','Admin\KelurahanController@create')->name('admin.kel.create');
+	Route::post('kel/simpan','Admin\KelurahanController@store')->name('admin.kel.simpan');
+	Route::get('kel/edit/{id}', 'Admin\KelurahanController@edit')->name('admin.kel.edit');
+    Route::post('kel/update/{id}','Admin\KelurahanController@update')->name('admin.kel.update');
+    Route::delete('kel/destroy/{id}','Admin\KelurahanController@destroy')->name('admin.kel.destroy');
 
 	Route::get('pengembang', 'Admin\PengembangController@index')->name('admin.pengembang');
 	Route::get('pengembang/create','Admin\PengembangController@create')->name('admin.pengembang.create');

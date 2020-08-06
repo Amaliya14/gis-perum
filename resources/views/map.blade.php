@@ -31,7 +31,7 @@
 
 
                 <a class="navbar-brand" href="index-map-leaflet-fullscreen.html">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Shield_of_the_city_of_Tegal.svg" width="30px" height="40px" alt="">
+                  <img src="https://www.clipartkey.com/mpngs/m/82-827919_gambar-rumah-vector-png-grah-pravesh-logo-png.png" width="40px" height="30px" alt="">
                 </a>
 
 
@@ -84,7 +84,7 @@
                         <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="{{route('users.logout')}}">Logout</a>
                             </div>
-</li>
+                    </li>
                     @endauth
 
                     @guest('pengguna')
@@ -135,12 +135,20 @@
                       <div class="ts-form-collapse ts-xs-hide-collapse collapse show">
 
                           <!--Keyword-->
+                          <select class="custom-select my-2" id="kelurahan" name="category">
+                              <option value="">Kelurahan</option>
+                              @foreach($kelurahan as $kel)
+                              <option value="{{$kel->kelurahan}}">{{$kel->kelurahan}}</option>
+                              @endforeach
+                          </select>
+
                           <select class="custom-select my-2" id="kecamatan" name="category">
                               <option value="">Kecamatan</option>
                               @foreach($kecamatan as $k)
                               <option value="{{$k->kecamatan}}">{{$k->kecamatan}}</option>
                               @endforeach
                           </select>
+                           
                           <div class="form-group my-2">
                               <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Nama Perumahan">
                           </div>

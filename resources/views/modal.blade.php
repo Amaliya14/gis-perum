@@ -7,7 +7,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="avatar">
-					<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Shield_of_the_city_of_Tegal.svg" alt="Avatar">
+					<img src="adminlte/dist/img/animasi-rumah.png" alt="Avatar">
 				</div>				
 				<h4 class="modal-title">Login</h4>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -16,7 +16,7 @@
 			    <form method="POST" action="{{route('users.login')}}">
          @csrf    
                 <div class="form-group">
-						<input type="text" class="form-control" name="username" placeholder="Username" required="required">		
+						<input type="text" class="form-control" name="email" placeholder="Email" required="required">		
 					</div>
 					<div class="form-group">
 						<input type="password" class="form-control" name="password" placeholder="Password" required="required">	
@@ -27,7 +27,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				Belum memiliki akun ? register<a href="#" data-toggle="modal" data-target="#modalRegisterForm" data-dismiss="modal">di sini</a>
+				Belum memiliki akun ? Register<a href="#" data-toggle="modal" data-target="#modalRegisterForm" data-dismiss="modal">di sini</a>
 			</div>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="avatar">
-					<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Shield_of_the_city_of_Tegal.svg" alt="Avatar">
+					<img src="adminlte/dist/img/animasi-rumah.png" alt="Avatar">
 				</div>				
 				<h4 class="modal-title">Register</h4>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

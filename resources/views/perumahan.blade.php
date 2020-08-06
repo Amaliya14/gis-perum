@@ -31,7 +31,7 @@
 
                 <!--Brand Logo-->
                 <a class="navbar-brand" href="index-map-leaflet-fullscreen.html">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Shield_of_the_city_of_Tegal.svg" width="30px" height="40px" alt="">
+                  <img src="https://www.clipartkey.com/mpngs/m/82-827919_gambar-rumah-vector-png-grah-pravesh-logo-png.png" width="40px" height="30px" alt="">
                 </a>
 
                 <!--Responsive Collapse Button-->
@@ -270,7 +270,7 @@
                     <!--Brand and description-->
                     <div class="col-md-6">
                         <a href="#" class="brand">
-                            <img src="assets/img/logo.png" alt="">
+                            <img src="adminlte/dist/img/animasi-rumah.jpg" alt="">
                         </a>
                     </div>
 

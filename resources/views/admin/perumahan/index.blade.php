@@ -33,6 +33,7 @@
               <th>Perumahan</th>
               <th width="15%">Lokasi</th>
               <th>Kecamatan</th>
+              <th>Kelurahan</th>
               <th>Jumlah Rumah</th>
               <th>Luas Bangunan</th>
              <!--  <th>Latitude</th>
@@ -48,6 +49,7 @@
                       <td>{{ $perumahan->nama_perumahan }}</td>
                       <td>{{ $perumahan->lokasi }}</td>
                       <td>{{ $perumahan->kecamatan }}</td>
+                      <td>{{ $perumahan->kelurahan }}</td>
                       <td>{{ $perumahan->jumlah_rumah }} Unit</td>
                       <td>{{ $perumahan->luas_lahan_bangunan }} M<sup>2</sup></td>
                      <!--  <td>{{ $perumahan->latitude }}</td>
