@@ -22,6 +22,7 @@ Route::get('info-perumahan/{id}','WelcomeController@info')->name('info');
 Route::get('data-pengembang','WelcomeController@pengembang')->name('pengembang');
 Route::get('kontak','WelcomeController@kontak');
 Route::get('perumahan/cari','WelcomeController@cari')->name('cari');
+Route::get('chats/{id}','WelcomeController@chats')->name('chats');
 // Auth::routes();
 
 //pengguna
