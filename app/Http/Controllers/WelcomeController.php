@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Perumahan;
 use App\Kecamatan;
 use App\Pengembang;
+use App\Kelurahan;
 use DB;
 
 use App\Chats;
@@ -32,7 +33,8 @@ class WelcomeController extends Controller
       
        // dd($perumahan);
       $kecamatan = Kecamatan::orderBy('kecamatan','ASC')->get();
-      return view('map', compact('kecamatan'));
+      $kelurahan = Kelurahan::orderBy('kelurahan','ASC')->get();
+      return view('map', compact('kecamatan', 'kelurahan'));
     }
 
     public function mapPerumahan(){
