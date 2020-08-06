@@ -15,4 +15,8 @@ class Pengembang extends Authenticatable
       return $this->belongsTo(Perumahan::class, 'id_perumahan','id');
     }
 
+    public function Chats(){
+      return $this->belongsTo(Perumahan::class, 'id','id_admin');
+    }
+
 }
