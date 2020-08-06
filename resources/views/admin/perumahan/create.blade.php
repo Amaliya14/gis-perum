@@ -41,7 +41,7 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-6">
              <div class="form-group">
           <label for="kecamatan">Kecamatan:</label>
             <select class="form-control" name="kecamatan" required="required">
@@ -54,7 +54,21 @@
             </div>
           </div>
 
-          <div class="col-sm-4">
+            <div class="col-sm-6">
+             <div class="form-group">
+          <label for="kelurahan">Kelurahan:</label>
+            <select class="form-control" name="kelurahan" required="required">
+              @foreach($kelurahan as $kel)
+              <option value="{{$kel->kelurahan}}" {{old('kelurahan') === $kel->kelurahan ? 'selected' : ''}}>
+                {{$kel->kelurahan}}
+              </option>
+              @endforeach
+            </select>
+            </div>
+          </div>
+
+          <div class="row">
+          <div class="col-sm-6">
             <div class="form-group">
               <label for="jumlah_rumah">Jumlah Rumah:</label>
                 <input type="number" class="form-control" value="{{old('jumlah_rumah')}}" name="jumlah_rumah">
@@ -64,19 +78,19 @@
             </div>
           </div>
 
-           <div class="col-sm-4">
+           <div class="col-sm-6">
             <label>Luas Lahan Bangunan:</label>
               <div class="input-group">
               <input type="number" name="luas_lahan_bangunan" value="{{old('luas_lahan_bangunan')}}" class="form-control" aria-describedby="basic-addon2">
                   <span class="input-group-addon" id="basic-addon2">M<sup>2</sup></span>
             </div>
-            @if ($errors->has('luas_lahan_bangunan'))
-                      <span class="text-danger">{{ $errors->first('luas_lahan_bangunan') }}</span>
-                    @endif
+              @if ($errors->has('luas_lahan_bangunan'))
+                <span class="text-danger">{{ $errors->first('luas_lahan_bangunan') }}</span>
+              @endif
           </div>
         </div>
 
-      <div class="row" style="margin-top: 5px">
+      <div class="row">
         <div class="col-sm-6">
            <div class="form-group">
           <label for="latitude">Latitude:</label>

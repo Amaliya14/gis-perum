@@ -6,6 +6,40 @@
       <H3 class="alert alert-info" role="alert"><b>Dashboard</b></H3>
         <ol class="breadcrumb"></ol>
 
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>{{ $jumlahkecamatan }}</h3>
+
+              <p>Data Kecamatan</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="{{url('admin/kecamatan')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>{{ $jumlahkelurahan }}</h3>
+
+              <p>Data Kelurahan</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="{{url('admin/kelurahan')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+
          <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -38,22 +72,6 @@
           </div>
         </div>
        
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>{{ $jumlahkecamatan }}</h3>
-
-              <p>Data Kecamatan</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="{{url('admin/kecamatan')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
 
 <!-- Main content -->
     <section class="content">
@@ -81,6 +99,12 @@
   </section>
   @endsection
 @section('script')
+<style>
+#chartdiv {
+  width: 100%;
+  height: 400px;
+}
+</style>
 <!-- Resources -->
 <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
 <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>

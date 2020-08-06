@@ -32,12 +32,12 @@
               <h2 class="text-dark">Sistem Informasi Geografis Pemetaan Perumahan Di Kota Tegal</h2>
             </div>
         </nav>
-        <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-light">
+        <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-dark">
             <div class="container">
 
                 <!--Brand Logo-->
-                <a class="navbar-brand" href="index-map-leaflet-fullscreen.html">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Shield_of_the_city_of_Tegal.svg" width="30px" height="40px" alt="">
+                <<a class="navbar-brand" href="index-map-leaflet-fullscreen.html">
+                  <img src="https://www.clipartkey.com/mpngs/m/82-827919_gambar-rumah-vector-png-grah-pravesh-logo-png.png" width="40px" height="30px" alt="">
                 </a>
 
                 <!--Responsive Collapse Button-->
@@ -80,6 +80,29 @@
                         </li>
                     </ul>
 
+                    <ul class="navbar-nav ml-auto">
+                    
+                        @auth('pengguna')
+                        <li class="nav-item-dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                           {{ Auth::user()->nama }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{route('users.logout')}}">Logout</a>
+                                </div>
+</li>
+                        @endauth
+
+                        @guest('pengguna')
+                        <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#modalLoginForm">
+                                Login
+                            </a>
+                           
+                            </li>
+                        @endguest
+                        
+                    </ul>
                 </div>
                 <!--end navbar-collapse-->
             </div>
@@ -188,6 +211,7 @@
 
     </main>
     <!--end #ts-main-->
+    @include('modal')
 
     <!--*********************************************************************************************************-->
     <!--************ FOOTER *************************************************************************************-->
@@ -204,7 +228,7 @@
                     <!--Brand and description-->
                     <div class="col-md-6">
                         <a href="#" class="brand">
-                            <img src="assets/img/logo.png" alt="">
+                            <img src="adminlte/dist/img/animasi-rumah.jpg" alt="">
                         </a>
                     </div>
 

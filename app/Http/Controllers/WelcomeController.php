@@ -6,17 +6,21 @@ use Illuminate\Http\Request;
 use App\Perumahan;
 use App\Kecamatan;
 use App\Pengembang;
+use DB;
 
 class WelcomeController extends Controller
 {
-    public function coba(){
-      return view('coba');
-    }
+    // public function grafik(){
+    // $perkecamatan = DB::select('SELECT kecamatan, COUNT(kecamatan) as perkecamatan FROM `perumahan` GROUP BY kecamatan');
+    //   return view('grafik', compact('perkecamatan'));
+    // }
 
     public function home(){
       $perumahan = Perumahan::with('info')->get();
       // dd($perumahan);
-      return view('welcome', compact('perumahan'));
+      $perkecamatan = DB::select('SELECT kecamatan, COUNT(kecamatan) as perkecamatan FROM `perumahan` GROUP BY kecamatan');
+      return view('welcome', compact('perumahan', 'perkecamatan'));
+
     }
 
     public function map(){

@@ -26,12 +26,12 @@
               <h2 class="text-dark">Sistem Informasi Geografis Pemetaan Perumahan Di Kota Tegal</h2>
             </div>
         </nav>
-        <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-light">
+        <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-dark">
             <div class="container">
 
 
                 <a class="navbar-brand" href="index-map-leaflet-fullscreen.html">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Shield_of_the_city_of_Tegal.svg" width="30px" height="40px" alt="">
+                  <img src="https://www.clipartkey.com/mpngs/m/82-827919_gambar-rumah-vector-png-grah-pravesh-logo-png.png" width="40px" height="30px" alt="">
                 </a>
 
 
@@ -71,8 +71,32 @@
                                 Contact 
                             </a>
                         </li>
-                    </ul>
 
+                        
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                    
+                    @auth('pengguna')
+                    <li class="nav-item-dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                       {{ Auth::user()->nama }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="{{route('users.logout')}}">Logout</a>
+                            </div>
+                    </li>
+                    @endauth
+
+                    @guest('pengguna')
+                    <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#modalLoginForm">
+                            Login
+                        </a>
+                       
+                        </li>
+                    @endguest
+                    
+                </ul>
                 </div>
                 <!--end navbar-collapse-->
             </div>
@@ -117,9 +141,6 @@
                               <option value="{{$k->kecamatan}}">{{$k->kecamatan}}</option>
                               @endforeach
                           </select>
-                          <select class="custom-select my-2" id="desa" name="category">
-                              <option value="">Desa</option>
-                          </select>
                            
                           <div class="form-group my-2">
                               <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Nama Perumahan">
@@ -148,6 +169,8 @@
               </div>
 
           </div>
+
+          @include('modal')
 
           <footer id="ts-footer">
 

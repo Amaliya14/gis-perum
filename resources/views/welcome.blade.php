@@ -13,6 +13,7 @@
 
     <title>GIS-PERUM</title>
 
+  
 </head>
 
 <body>
@@ -26,12 +27,12 @@
               <h2 class="text-dark">Sistem Informasi Geografis Pemetaan Perumahan Di Kota Tegal</h2>
             </div>
         </nav>
-        <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-light">
+        <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-dark">
             <div class="container">
 
                 <!--Brand Logo-->
                 <a class="navbar-brand" href="index-map-leaflet-fullscreen.html">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Shield_of_the_city_of_Tegal.svg" width="30px" height="40px" alt="">
+                  <img src="https://www.clipartkey.com/mpngs/m/82-827919_gambar-rumah-vector-png-grah-pravesh-logo-png.png" width="40px" height="30px" alt="">
                 </a>
 
                 <!--Responsive Collapse Button-->
@@ -74,6 +75,28 @@
                         </li>
                     </ul>
 
+                    <ul class="navbar-nav ml-auto">
+                    
+                        @auth('pengguna')
+                        <li class="nav-item-dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                {{ Auth::user()->nama }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="{{route('users.logout')}}">Logout</a>
+                            </div>
+                        </li>
+                        @endauth
+
+                        @guest('pengguna')
+                        <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#modalLoginForm">
+                                Login
+                            </a>
+                           
+                            </li>
+                        @endguest
+                    </ul>
                 </div>
                 <!--end navbar-collapse-->
             </div>
@@ -87,139 +110,152 @@
     <!-- HERO SLIDER
     =================================================================================================================-->
     <section id="ts-hero" class="ts-hero-slider ts-bg-black mb-0 ">
-
-        <div class="ts-min-h__70vh w-100">
-
-            <!--Owl Carousel-->
-            <div class="owl-carousel" data-owl-loop="1" data-owl-nav="1">
-
-                <!-- SLIDE
-                =====================================================================================================-->
-                @foreach($perumahan->slice(0, 3) as $perum)
-                @if($perum->info)
-                <div class="ts-slide" data-bg-image="{{asset('picture/'.$perum->info->foto)}}">
-                    <div class="ts-slide-description h-100 ts-center__vertical pb-0">
-                        <div class="container">
-
-                            <!--Title-->
-                            <h1 class="mb-3">{{$perum->nama_perumahan}}</h1>
-
-                            <!--Location-->
-                            <figure class="ts-opacity__50">
-                                <i class="fa fa-map-marker mr-2"></i>
-                                {{$perum->lokasi}}
-                            </figure>
-
-                            <!--Features-->
-                            <div class="ts-description-lists d-none d-md-block ts-responsive-block">
-                                <dl>
-                                    <dt>Luas Lahan Bangunan</dt>
-                                    <dd>{{$perum->luas_lahan_bangunan}} M<sup>2</sup></dd>
-                                </dl>
-                                <dl>
-                                    <dt>Jumlah Rumah</dt>
-                                    <dd>{{$perum->jumlah_rumah}} Unit</dd>
-                                </dl>
-                            </div>
-
-                            <a href="{{route('info', $perum->id)}}" class="btn btn-primary ts-btn-arrow">Detail</a>
-
-                        </div>
+      <div class="ts-min-h__70vh w-100">
+        <!--Owl Carousel-->
+        <div class="owl-carousel" data-owl-loop="1" data-owl-nav="1">
+          <!-- SLIDE
+          =====================================================================================================-->
+            @foreach($perumahan->slice(0, 3) as $perum)
+            @if($perum->info)
+              <div class="ts-slide" data-bg-image="{{asset('picture/'.$perum->info->foto)}}">
+                <div class="ts-slide-description h-100 ts-center__vertical pb-0">
+                  <div class="container">
+                    <!--Title-->
+                    <h1 class="mb-3">{{$perum->nama_perumahan}}</h1>
+                    <!--Location-->
+                    <figure class="ts-opacity__50">
+                      <i class="fa fa-map-marker mr-2"></i>
+                        {{$perum->lokasi}}
+                    </figure>
+                    <!--Features-->
+                    <div class="ts-description-lists d-none d-md-block ts-responsive-block">
+                      <dl>
+                        <dt>Luas Lahan Bangunan</dt>
+                            <dd>{{$perum->luas_lahan_bangunan}} M<sup>2</sup></dd>
+                      </dl>
+                    <dl>
+                        <dt>Jumlah Rumah</dt>
+                            <dd>{{$perum->jumlah_rumah}} Unit</dd>
+                        </dl>
                     </div>
+                        <a href="{{route('info', $perum->id)}}" class="btn btn-primary ts-btn-arrow">Detail</a>
                 </div>
-                @endif
-                @endforeach
-                <!--end slide-->
+              </div>
             </div>
+            @endif
+            @endforeach
+              <!--end slide-->
+          </div>
             <!--end owl-carousel-->
 
             <!--Hero slider control-->
             <div class="ts-hero-slider-control">
                 <div class="container" id="owl-control"></div>
             </div>
-
-        </div>
-
     </section>
 
     <main id="ts-main">
       <section id="featured-properties" class="ts-block pt-5">
-            <div class="container">
-
-                <!--Title-->
-                <div class="ts-title text-center">
-                    <h2>Terbaru</h2>
-                </div>
-
-                <div class="row">
-
-                    <!--Item-->
-                    @foreach($perumahan->slice(0, 3) as $perum)
-                    @if($perum->info)
-                    <div class="col-sm-6 col-lg-4">
-
-                        <div class="card ts-item ts-card ts-item__lg">
-
-                            <!--Ribbon-->
-                            <div class="ts-ribbon">
-                                <i class="fa fa-thumbs-up"></i>
-                            </div>
-
-                            <!--Card Image-->
-                            <a href="detail-01.html" class="card-img ts-item__image" data-bg-image="{{asset('picture/'.$perum->info->foto)}}">
-                                <div class="ts-item__info-badge">Rp. {{number_format($perum->info->harga, 0, ',','.')}} Juta</div>
-                                <figure class="ts-item__info">
-                                    <h4>{{$perum->nama_perumahan}}</h4>
-                                    <aside>
-                                        <i class="fa fa-map-marker mr-2"></i>
-                                        {{$perum->lokasi}}
-                                    </aside>
-                                </figure>
-                            </a>
-
-                            <!--Card Body-->
-                            <div class="card-body">
-                                <div class="ts-description-lists">
-                                  <dl>
-                                      <dt>Luas Lahan Bangunan</dt>
-                                      <dd>{{$perum->luas_lahan_bangunan}} M<sup>2</sup></dd>
-                                  </dl>
-                                  <dl>
-                                      <dt>Jumlah Rumah</dt>
-                                      <dd>{{$perum->jumlah_rumah}} Unit</dd>
-                                  </dl>
-                                </div>
-                            </div>
-
-                            <!--Card Footer-->
-                            <a href="{{route('info', $perum->id)}}" class="card-footer">
-                                <span class="ts-btn-arrow">Detail</span>
-                            </a>
-
-                        </div>
-                        <!--end ts-item-->
-                    </div>
-                    @endif
-                    @endforeach
-                    <!--end Item col-md-4-->
-
-                </div>
-                <!--end row-->
-
-                <!--All properties button-->
-                <div class="text-center mt-3">
-                    <a href="{{url('/perumahan')}}" class="btn btn-outline-dark ts-btn-border-muted">Lihat Semua</a>
-                </div>
-
+        <div class="container">
+            <!--Title-->
+            <div class="ts-title text-center">
+              <h2><b>Grafik</b></h2>
             </div>
-            <!--end container-->
-        </section>
+              <div class="row">
+            </div>
+              <div id="chartdiv"></div>
+            </div>
+            <!-- /.box-body-->
+          </div>
+          <!-- /.box -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+      </div>
+  </section>
+
+@section('script')
+<style>
+#chartdiv {
+  width: 100%;
+  height: 400px;
+}
+</style>
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+// Export
+chart.exporting.menu = new am4core.ExportMenu();
+
+// Data for both series
+chart.data = [
+  <?php foreach ($perkecamatan as $per): ?>
+    {
+     "year" : "{{$per->kecamatan}}",
+     "income"  : "{{$per->perkecamatan}}",
+     "color": chart.colors.next()
+    },
+  <?php endforeach ?>
+];
+
+
+/* Create axes */
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "year";
+categoryAxis.renderer.minGridDistance = 30;
+
+/* Create value axis */
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+/* Create series */
+var columnSeries = chart.series.push(new am4charts.ColumnSeries());
+columnSeries.name = "Income";
+columnSeries.dataFields.valueY = "income";
+columnSeries.dataFields.categoryX = "year";
+
+columnSeries.columns.template.tooltipText = "{categoryX} Terdapat {valueY} Perumahan";
+columnSeries.columns.template.propertyFields.fillOpacity = "fillOpacity";
+columnSeries.columns.template.propertyFields.stroke = "stroke";
+columnSeries.columns.template.propertyFields.fill = "color";
+columnSeries.columns.template.propertyFields.strokeWidth = "strokeWidth";
+columnSeries.columns.template.propertyFields.strokeDasharray = "columnDash";
+columnSeries.tooltip.label.textAlign = "middle";
+
+
+var circle = bullet.createChild(am4core.Circle);
+circle.radius = 4;
+
+circle.fill = am4core.color("#fff");
+circle.strokeWidth = 5;
+
+chart.data = data;
+
+}); // end am4core.ready()
+</script>
+
+@endsection
+@yield('script')
+
 
         <!-- FEATURES
         =============================================================================================================-->
-
+          <!-- Bar chart -->
     </main>
 
+    @include('modal')
     <!--*********************************************************************************************************-->
     <!--************ FOOTER *************************************************************************************-->
     <!--*********************************************************************************************************-->
@@ -235,7 +271,7 @@
                     <!--Brand and description-->
                     <div class="col-md-6">
                         <a href="#" class="brand">
-                            <img src="assets/img/logo.png" alt="">
+                            <img src="adminlte/dist/img/animasi-rumah.jpg" alt="">
                         </a>
                     </div>
 
@@ -276,7 +312,7 @@
             <!--end container-->
         </section>
         <!--end ts-footer-main-->
-
+        
         <!--SECONDARY FOOTER CONTENT
         =============================================================================================================-->
         <section id="ts-footer-secondary">

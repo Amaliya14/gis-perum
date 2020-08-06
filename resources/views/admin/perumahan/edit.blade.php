@@ -45,7 +45,7 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-6">
              <div class="form-group">
           <label for="kecamatan">Kecamatan:</label>
             <!-- <input type="text" class="form-control" id="kecamatan" name="kecamatan"> -->
@@ -62,7 +62,25 @@
             </div>
           </div>
 
-          <div class="col-sm-4">
+          <div class="row">
+          <div class="col-sm-6">
+             <div class="form-group">
+          <label for="kelurahan">Kelurahan:</label>
+            <!-- <input type="text" class="form-control" id="kecamatan" name="kecamatan"> -->
+            <select class="form-control" name="kelurahan">
+              @foreach($kelurahan as $kel)
+              <option value="{{$kel->kelurahan}}"
+                {{$kel->kelurahan === $perumahan->kelurahan ? 'selected' : ''}}
+                {{old('kelurahan') === $kel->kelurahan ? 'selected' : ''}}
+                >
+                {{$kel->kelurahan}}
+              </option>
+              @endforeach
+            </select>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
             <div class="form-group">
               <label for="jumlah_rumah">Jumlah Rumah:</label>
                 <input type="number" class="form-control" value="{{old('jumlah_rumah', $perumahan->jumlah_rumah)}}" name="jumlah_rumah">
@@ -72,7 +90,7 @@
             </div>
           </div>
 
-          <div class="col-sm-4">
+          <div class="col-sm-6">
            <label>Luas Lahan Bangunan:</label>
             <div class="input-group">
               <input type="number" name="luas_lahan_bangunan" value="{{old('luas_lahan_bangunan', $perumahan->luas_lahan_bangunan)}}" class="form-control" aria-describedby="basic-addon2">
