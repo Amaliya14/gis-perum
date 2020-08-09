@@ -19,3 +19,5 @@ use Illuminate\Http\Request;
 
 Route::get('/chats','WelcomeController@apiChat');
 Route::post('/chats','WelcomeController@apiSendChat');
+
+Route::get('/chats-list-admin','AdminPerum\ChatController@chatListAdmin');

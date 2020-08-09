@@ -79,6 +79,10 @@ Route::group(['prefix' => 'admin-perum'], function(){
 	Route::get('edit/{id}', 'AdminPerum\InfoPerumController@edit')->name('admin-perum.edit');
     Route::patch('update','AdminPerum\InfoPerumController@update')->name('admin-perum.update');
     Route::post('destroy/{id}','AdminPerum\InfoPerumController@destroy')->name('admin-perum.destroy');
+	
+	Route::get('chat', 'AdminPerum\ChatController@index')->name('admin-perum.chat');
+	Route::get('chat-detail/{id}', 'AdminPerum\ChatController@chat')->name('admin-perum.chat-detail');
+	Route::get('chats-list-admin','AdminPerum\ChatController@chatListAdmin');
 
 	Route::get('info', 'AdminPerum\InfoPerumController@edit')->name('info-edit');
 });

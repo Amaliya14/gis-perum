@@ -105,9 +105,18 @@ class WelcomeController extends Controller
         'id_user' =>$request->id_user,
         'id_admin' =>$request->id_admin,
         'isi_chat' =>$request->isi_chat,
-        'pengirim' =>'user'
+        'pengirim' =>$request->pengirim
         ];
       return response()->json(Response::transform(Chats::create($data), 'Send Message Succcess', true), 200);
+    }
+
+    public function chatListAdmin(){
+      // $this->middleware('auth:admin-perum');
+      $admin = Auth::user();
+      echo json_encode($admin);
+      // $data = Chats::with(['pengembang','user'])->get();
+      // return response()->json(Response::transform($admin, 'All Chat List', true), 200);
+     
     }
     
 

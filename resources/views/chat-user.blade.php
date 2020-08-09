@@ -440,13 +440,14 @@ img{ max-width:100%;}
        var isi = $('#isi_chat').val();
        var id_admin = {{$id_admin}};
        var id_user = {{ Auth::user()->id }};
+       var pengirim = 'user';
        $.ajax({
 
 type:'POST',
 
 url:'/api/chats',
 
-data:{isi_chat:isi,id_user:id_user,id_admin:id_admin},
+data:{isi_chat:isi,id_user:id_user,id_admin:id_admin,pengirim:pengirim},
 headers: {
 
 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

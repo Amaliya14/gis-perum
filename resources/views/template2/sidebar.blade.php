@@ -29,6 +29,14 @@
           </a>
         </li>
 
+        <li class="@if(Request::is('admin-perum/infoperum')) active @endif">
+          <a href="{{route('admin-perum.chat')}}">
+            <i class="fa fa-comment"></i>
+            <span>Chats</span>
+            <span class="pull-right-container"></span>
+          </a>
+        </li>
+
         <li>
           <a href="{{ route('admin-perum.logout') }}" onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
