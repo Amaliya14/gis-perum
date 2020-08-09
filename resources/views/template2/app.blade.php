@@ -35,7 +35,10 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <!-- Google Font -->
+<!-- jQuery 3 -->
+<script src="{{url('adminlte/bower_components/jquery/dist/jquery.min.js')}}"></script>
+ 
+<!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -55,8 +58,7 @@
   @include('template2.footer')
 
 
-<!-- jQuery 3 -->
-<script src="{{url('adminlte/bower_components/jquery/dist/jquery.min.js')}}"></script>
+
 <!-- jQuery UI 1.11.4 -->
 <script src="{{url('adminlte/bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
