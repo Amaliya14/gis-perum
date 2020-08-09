@@ -96,7 +96,7 @@ class WelcomeController extends Controller
       $user = $request->input('id_user');
       $admin = $request->input('id_admin');
       $data = Chats::with(['pengembang','user'])->where('id_user',$user)->where('id_admin',$admin)->get();
-      return response()->json(Response::transform($data, 'All Animals found', true), 200);
+      return response()->json(Response::transform($data, 'All Chat found', true), 200);
     }
 
     public function apiSendChat(Request $request){
@@ -117,6 +117,16 @@ class WelcomeController extends Controller
       // $data = Chats::with(['pengembang','user'])->get();
       // return response()->json(Response::transform($admin, 'All Chat List', true), 200);
      
+    }
+
+    public function apiMap(Request $request){
+      // $features = new \stdClass();
+      $perumahan = Perumahan::with('info')->whereHas('info', function($query){
+        $query->whereNotNull('id_perumahan');
+      })->get();
+     
+      
+      return response()->json(Response::transform($perumahan, 'All Perumahan found', true), 200);
     }
     
 
