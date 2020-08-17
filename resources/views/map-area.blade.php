@@ -311,7 +311,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
   showToMap();
 </script> -->
 
-<!-- <script>
+<script>
 var dataMap = "";
 var maps = {"type": "FeatureCollection",
   "crs": {
@@ -400,8 +400,12 @@ function retrieveData() {
 
 }
 retrieveData();
-    console.log("dataaa", maps);
+    const mapsArea = maps;
+    console.log("dataaa", mapsArea);
 
+
+
+   
 
 
 	// TO MAKE THE MAP APPEAR YOU MUST
@@ -417,7 +421,35 @@ style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
 });
  
 map.on('load', function() {
-  console.log(maps);
+  var hoveredStateId = null;
+var colorMargadanaDefault = '#FA8072';
+var colorSelatanDefault = '#FA8072';
+var colorBaratDefault = '#FA8072';
+var colorTimurDefault = '#FA8072';
+
+
+const margadanaExist = mapsArea.features.find(p => p.properties.kecamatan === 'Margadana');
+    const baratExist = mapsArea.features.find(p => p.properties.kecamatan === 'Tegal Barat');
+    const selatanExist = mapsArea.features.find(p => p.properties.kecamatan === 'Tegal Selatan');
+    const timurExist = mapsArea.features.find(p => p.properties.kecamatan === 'Tegal Timur');
+  console.log("margadana",margadanaExist);
+    if (margadanaExist) {
+      colorMargadanaDefault = '#00FA9A'; 
+    }
+
+    if (baratExist) {
+      colorBaratDefault = '#00FA9A'; 
+    }
+
+    if (selatanExist) {
+      colorSelatanDefault = '#00FA9A'; 
+    }
+
+    if (timurExist) {
+      colorTimurDefault = '#00FA9A'; 
+    }
+
+
 // Add a new source from our GeoJSON data and
 // set the 'cluster' option to true. GL-JS will
 // add the point_count property to your source data.
@@ -432,6 +464,74 @@ clusterMaxZoom: 15, // Max zoom to cluster points on
 clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
 }
 );
+
+map.addSource('maine', {
+'type': 'geojson',
+'data': '{{asset('margadana.geojson')}}'
+});
+
+map.addSource('selatan', {
+'type': 'geojson',
+'data': '{{asset('selatan.geojson')}}'
+});
+
+map.addSource('barat', {
+'type': 'geojson',
+'data': '{{asset('barat.geojson')}}'
+});
+
+map.addSource('timur', {
+'type': 'geojson',
+'data': '{{asset('timur.geojson')}}'
+});
+
+
+
+
+map.addLayer({
+'id': 'maine',
+'type': 'fill',
+'source': 'maine',
+'layout': {},
+'paint': {
+'fill-color': colorMargadanaDefault,
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'selatan',
+'type': 'fill',
+'source': 'selatan',
+'layout': {},
+'paint': {
+'fill-color': colorSelatanDefault,
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'timur',
+'type': 'fill',
+'source': 'timur',
+'layout': {},
+'paint': {
+'fill-color': colorTimurDefault,
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'barat',
+'type': 'fill',
+'source': 'barat',
+'layout': {},
+'paint': {
+'fill-color': colorBaratDefault,
+'fill-opacity': 0.5
+}
+});
+
  
 map.addLayer({
 id: 'clusters',
@@ -600,10 +700,10 @@ map.getCanvas().style.cursor = '';
     }
   });
 
-</script> -->
+</script>
 
 
-<script>
+<!-- <script>
 	// TO MAKE THE MAP APPEAR YOU MUST
 	// ADD YOUR ACCESS TOKEN FROM
 	// https://account.mapbox.com
@@ -744,113 +844,113 @@ map.addLayer({
 
 });
 
-map.addControl(new mapboxgl.NavigationControl());
+// map.addControl(new mapboxgl.NavigationControl());
 
-  const url = '{{config('app.url')}}';
-  const urlMap = '{{url('mapPerumahan')}}';
-  const search = document.querySelector('#keyword');
-  const kecamatan = document.querySelector('#kecamatan');
-  let markers = [];
+//   const url = '{{config('app.url')}}';
+//   const urlMap = '{{url('mapPerumahan')}}';
+//   const search = document.querySelector('#keyword');
+//   const kecamatan = document.querySelector('#kecamatan');
+//   let markers = [];
 
-  async function showToMap(){
-    const perumahan = await fetch(urlMap).then(res => res.json()).then(res => res);
+//   async function showToMap(){
+//     const perumahan = await fetch(urlMap).then(res => res.json()).then(res => res);
 
-    const margadanaExist = perumahan.find(p => p.kecamatan === 'Margadana');
-    const baratExist = perumahan.find(p => p.kecamatan === 'Tegal Barat');
-    const selatanExist = perumahan.find(p => p.kecamatan === 'Tegal Selatan');
-    const timurExist = perumahan.find(p => p.kecamatan === 'Tegal Timur');
+//     const margadanaExist = perumahan.find(p => p.kecamatan === 'Margadana');
+//     const baratExist = perumahan.find(p => p.kecamatan === 'Tegal Barat');
+//     const selatanExist = perumahan.find(p => p.kecamatan === 'Tegal Selatan');
+//     const timurExist = perumahan.find(p => p.kecamatan === 'Tegal Timur');
 
-    if (margadanaExist) {
-      colorMargadanaDefault = '#00FA9A'; 
-    }
+//     if (margadanaExist) {
+//       colorMargadanaDefault = '#00FA9A'; 
+//     }
 
-    if (baratExist) {
-      colorBaratDefault = '#00FA9A'; 
-    }
+//     if (baratExist) {
+//       colorBaratDefault = '#00FA9A'; 
+//     }
 
-    if (selatanExist) {
-      colorSelatanDefault = '#00FA9A'; 
-    }
+//     if (selatanExist) {
+//       colorSelatanDefault = '#00FA9A'; 
+//     }
 
-    if (timurExist) {
-      colorTimurDefault = '#00FA9A'; 
-    }
+//     if (timurExist) {
+//       colorTimurDefault = '#00FA9A'; 
+//     }
 
-    perumahan.forEach(p => {
-      let marker = new mapboxgl.Marker();
-        showMarker(p, marker);
-    });
+//     perumahan.forEach(p => {
+//       let marker = new mapboxgl.Marker();
+//         showMarker(p, marker);
+//     });
 
-    search.addEventListener('input', function(){
+//     search.addEventListener('input', function(){
 
-      if(kecamatan.value === ''){
-        const filter = perumahan.filter(f => {
-            return f.nama_perumahan.toLowerCase().includes(this.value)
-        });
-        clearMarkers();
-        filter.forEach(p => {
-          let marker = new mapboxgl.Marker();
-          showMarker(p, marker)
-        })
-      }else {
-        clearMarkers();
-        const filter = perumahan.filter(f => f.kecamatan === kecamatan.value);
-        filter.forEach(p => {
-          let marker = new mapboxgl.Marker();
-          showMarker(p, marker)
-        })
-      }
+//       if(kecamatan.value === ''){
+//         const filter = perumahan.filter(f => {
+//             return f.nama_perumahan.toLowerCase().includes(this.value)
+//         });
+//         clearMarkers();
+//         filter.forEach(p => {
+//           let marker = new mapboxgl.Marker();
+//           showMarker(p, marker)
+//         })
+//       }else {
+//         clearMarkers();
+//         const filter = perumahan.filter(f => f.kecamatan === kecamatan.value);
+//         filter.forEach(p => {
+//           let marker = new mapboxgl.Marker();
+//           showMarker(p, marker)
+//         })
+//       }
 
-    })
+//     })
 
-  kecamatan.addEventListener('click', function(){
-    // alert(this.value)
-    if(this.value !== ''){
-      const filter = perumahan.filter(f => {
-        if(f.info !== null){
-          return f.kecamatan === this.value
-        }
-      });
+//   kecamatan.addEventListener('click', function(){
+//     // alert(this.value)
+//     if(this.value !== ''){
+//       const filter = perumahan.filter(f => {
+//         if(f.info !== null){
+//           return f.kecamatan === this.value
+//         }
+//       });
 
-      clearMarkers();
-      filter.forEach(p => {
-        let marker = new mapboxgl.Marker();
-        showMarker(p, marker)
-      });
-      search.value = ''
-    }else {
-      clearMarkers();
-      perumahan.forEach(p => {
-        let marker = new mapboxgl.Marker();
-        showMarker(p, marker);
+//       clearMarkers();
+//       filter.forEach(p => {
+//         let marker = new mapboxgl.Marker();
+//         showMarker(p, marker)
+//       });
+//       search.value = ''
+//     }else {
+//       clearMarkers();
+//       perumahan.forEach(p => {
+//         let marker = new mapboxgl.Marker();
+//         showMarker(p, marker);
 
-      });
-    }
-  });
-};
-
-
-  function clearMarkers(){
-    markers.forEach((marker) => marker.remove());
-    markers = [];
-  }
+//       });
+//     }
+//   });
+// };
 
 
-  function showMarker(p, marker){
-    const popup = new mapboxgl.Popup({ offset: 25 })
-    .setHTML(`
-    <img style=" display: block; margin: 0 auto; width: 95%;"
-    src="${url}picture/${p.info.foto}" alt="tidak ada foto">
-    <div class="text-center"><a href="info-perumahan/${p.id}"><strong>${p.nama_perumahan}</strong></a>
-    <p class="text-dark">${p.lokasi}</p></div>`);
-
-    marker.setLngLat({lng: p.longitude, lat: p.latitude}).setPopup(popup).addTo(map);
-
-    markers.push(marker)
-  }
+//   function clearMarkers(){
+//     markers.forEach((marker) => marker.remove());
+//     markers = [];
+//   }
 
 
-  showToMap();
+//   function showMarker(p, marker){
+//     const popup = new mapboxgl.Popup({ offset: 25 })
+//     .setHTML(`
+//     <img style=" display: block; margin: 0 auto; width: 95%;"
+//     src="${url}picture/${p.info.foto}" alt="tidak ada foto">
+//     <div class="text-center"><a href="info-perumahan/${p.id}"><strong>${p.nama_perumahan}</strong></a>
+//     <p class="text-dark">${p.lokasi}</p></div>`);
 
-</script>
+//     marker.setLngLat({lng: p.longitude, lat: p.latitude}).setPopup(popup).addTo(map);
+
+//     markers.push(marker)
+//   }
+
+
+//   showToMap();
+
+</script> -->
 </body>
