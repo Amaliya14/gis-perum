@@ -34,7 +34,7 @@
               <th width="15%">Lokasi</th>
               <th>Kecamatan</th>
               <th>Kelurahan</th>
-              <th>Jumlah Rumah</th>
+              <th>Total Rumah</th>
               <th>Luas Bangunan</th>
              <!--  <th>Latitude</th>
               <th>Longitude</th> -->

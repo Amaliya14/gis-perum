@@ -45,6 +45,7 @@ class InfoPerumController extends Controller
     {
         $request->validate([
             'nama_perumahan' => 'required',
+            'rumah_tersedia' => 'required',
             'tipe' => 'required',
             'harga' => 'required|numeric',
             'Keterangan' => 'required',
@@ -91,6 +92,7 @@ class InfoPerumController extends Controller
     {
         $request->validate([
             'nama_perumahan' => 'required',
+            'rumah_tersedia' => 'required',
             'tipe' => 'required',
             'harga' => 'required|numeric',
             'keterangan' => 'required',
@@ -108,6 +110,7 @@ class InfoPerumController extends Controller
           }
 
           $infoPerum->update([
+            'rumah_tersedia' => $request->rumah_tersedia,
             'tipe' => $request->tipe,
             'harga' => $request->harga,
             'Keterangan' => $request->keterangan,
@@ -121,6 +124,7 @@ class InfoPerumController extends Controller
           if($request->foto){
             $foto = $request->file('foto')->store('perumahan');
             InfoPerum::create([
+              'rumah_tersedia' => $request->rumah_tersedia,
               'tipe' => $request->tipe,
               'harga' => $request->harga,
               'Keterangan' => $request->keterangan,

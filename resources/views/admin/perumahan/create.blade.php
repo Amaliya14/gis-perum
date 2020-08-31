@@ -68,10 +68,11 @@
           </div>
 
           <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label for="jumlah_rumah">Jumlah Rumah:</label>
-                <input type="number" class="form-control" value="{{old('jumlah_rumah')}}" name="jumlah_rumah">
+           <div class="col-sm-6">
+              <label for="jumlah_rumah">Total Rumah:</label>
+              <div class="input-group">
+                <input type="number" class="form-control" value="{{old('jumlah_rumah')}}" name="jumlah_rumah" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="basic-addon2">Unit</span>
                   @if ($errors->has('jumlah_rumah'))
                     <span class="text-danger">{{ $errors->first('jumlah_rumah') }}</span>
                   @endif

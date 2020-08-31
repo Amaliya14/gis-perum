@@ -198,7 +198,7 @@
 
                            <!--Card Image-->
                           <!--Card Image-->
-                            <a href="detail-01.html" class="card-img ts-item__image" data-bg-image="{{asset('picture/'.$perum->info->foto)}}">
+                            <a class="card-img ts-item__image" data-bg-image="{{asset('picture/'.$perum->info->foto)}}">
                                 <div class="ts-item__info-badge">Rp. {{number_format($perum->info->harga, 0, ',','.')}} Juta</div>
                                 <figure class="ts-item__info">
                                     <h4>{{$perum->nama_perumahan}}</h4>

@@ -32,6 +32,15 @@
             <input type="text" class="form-control" id="nama_perumahan" name="nama_perumahan" value="{{Auth::user()->perumahan->nama_perumahan}}" required>
         </div>
 
+        <div class="input-group">
+          <label for="rumah_tersedia">Rumah Tersedia:</label>
+            <input type="text" class="form-control" id="rumah_tersedia" name="rumah_tersedia" value="{{Auth::user()->perumahan->info ? Auth::user()->perumahan->info->rumah_tersedia : ''}}" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="basic-addon2">Unit</span>
+            @if ($errors->has('rumah_tersedia'))
+                <span class="text-danger">{{ $errors->first('rumah_tersedia') }}</span>
+            @endif
+        </div>
+
        <div class="form-group">
           <label for="tipe">Tipe:</label>
             <input type="text" class="form-control" id="tipe" name="tipe" value="{{Auth::user()->perumahan->info ? Auth::user()->perumahan->info->tipe : ''}}" >

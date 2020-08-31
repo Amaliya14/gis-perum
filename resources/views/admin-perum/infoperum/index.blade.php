@@ -20,6 +20,7 @@
                 <th>No.</th>
                 <th>Foto</th>
                 <th>Nama Perumahan</th>
+                <th>Rumah Tersedia</th>
                 <th>Tipe</th>
                 <th>Harga</th>
                 <th>Keterangan</th>
@@ -36,6 +37,7 @@
                     <td> <img width="70" height="70" src="{{asset('frontend/img/rumah.png')}}" alt=""> </td>
                     @endif
                     <td>{{Auth::user()->perumahan->nama_perumahan}}</td>
+                    <td>{{Auth::user()->perumahan->info ? Auth::user()->perumahan->info->rumah_tersedia : ''}} Unit</td>
                     <td>{{Auth::user()->perumahan->info ? Auth::user()->perumahan->info->tipe : ''}}</td>
                     <td>{{Auth::user()->perumahan->info ? Auth::user()->perumahan->info->harga : ''}}</td>
                     <td>{{Auth::user()->perumahan->info ? Auth::user()->perumahan->info->katerangan : ''}}</td>
