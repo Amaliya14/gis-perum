@@ -174,7 +174,7 @@
                                     <dd>{{$perumahan->info->tipe}}</dd>
 
                                     <dt>Rumah Tersedia</dt>
-                                    <dd>{{$perumahan->rumah_tersedia}} Unit</dd>
+                                    <dd>{{$perumahan->info->rumah_tersedia}} Unit</dd>
                                 </dl>
 
                             </div>

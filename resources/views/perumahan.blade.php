@@ -213,12 +213,12 @@
                             <div class="card-body">
                                 <div class="ts-description-lists">
                                   <dl>
-                                      <dt>Luas Lahan Bangunan</dt>
-                                      <dd>{{$perum->luas_lahan_bangunan}} M<sup>2</sup></dd>
+                                    <dt>Luas Lahan Bangunan</dt>
+                                    <dd>{{$perum->luas_lahan_bangunan}} M<sup>2</sup></dd>
                                   </dl>
                                   <dl>
-                                      <dt>Total Rumah</dt>
-                                      <dd>{{$perum->jumlah_rumah}} Unit</dd>
+                                    <dt>Rumah Tersedia</dt>
+                                    <dd>{{$perum->info->rumah_tersedia}} Unit</dd>
                                   </dl>
                                 </div>
                             </div>
