@@ -155,7 +155,7 @@
                           <div>Legend : 
                           <table>
                           <tr>
-                            <td><legend style="background-color: green;"></legend></td>
+                            <td><legend style="background-color: #11ff00;"></legend></td>
                             <td>  Sawah</td>
                           </tr>
                           <tr>
@@ -442,7 +442,7 @@ retrieveData();
     mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczMW15eHVlYXBhZW4ifQ.uqVd8rK5Oe49IjUREFnfgw';
 var map = new mapboxgl.Map({
 container: 'map',
-style: 'mapbox://styles/mapbox/satellite-v9', // stylesheet location
+style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
     center: [109.125595, -6.879704], // starting position [lng, lat]
     zoom: 12 // starting zoom
 });
@@ -512,67 +512,253 @@ map.addSource('timur', {
 'data': '{{asset('timur.geojson')}}'
 });
 
-map.addSource('perumahan', {
+map.addSource('perumahanSelatan', {
 'type': 'geojson',
-'data': '{{asset('perumahan.geojson')}}'
+'data': '{{asset('selatan-perumahan.geojson')}}'
+});
+
+map.addSource('perumahanBarat', {
+'type': 'geojson',
+'data': '{{asset('barat-perumahan.geojson')}}'
+});
+
+map.addSource('perumahanTimur', {
+'type': 'geojson',
+'data': '{{asset('timur-perumahan.geojson')}}'
+});
+
+map.addSource('perumahanMargadana', {
+'type': 'geojson',
+'data': '{{asset('margadana-perumahan.geojson')}}'
+});
+
+map.addSource('sawah', {
+'type': 'geojson',
+'data': '{{asset('sawah.geojson')}}'
 });
 
 
 
 
-// map.addLayer({
-// 'id': 'maine',
-// 'type': 'fill',
-// 'source': 'maine',
-// 'layout': {},
-// 'paint': {
-// 'fill-color': colorMargadanaDefault,
-// 'fill-opacity': 0.5
-// }
-// });
-
-// map.addLayer({
-// 'id': 'selatan',
-// 'type': 'fill',
-// 'source': 'selatan',
-// 'layout': {},
-// 'paint': {
-// 'fill-color': colorSelatanDefault,
-// 'fill-opacity': 0.5
-// }
-// });
-
-// map.addLayer({
-// 'id': 'timur',
-// 'type': 'fill',
-// 'source': 'timur',
-// 'layout': {},
-// 'paint': {
-// 'fill-color': colorTimurDefault,
-// 'fill-opacity': 0.5
-// }
-// });
-
-// map.addLayer({
-// 'id': 'barat',
-// 'type': 'fill',
-// 'source': 'barat',
-// 'layout': {},
-// 'paint': {
-// 'fill-color': colorBaratDefault,
-// 'fill-opacity': 0.5
-// }
-// });
+map.addLayer({
+'id': 'maine',
+'type': 'fill',
+'source': 'maine',
+'layout': {},
+'paint': {
+'fill-color': colorMargadanaDefault,
+'fill-opacity': 0.5
+}
+});
 
 map.addLayer({
-'id': 'perumahan',
+'id': 'selatan',
 'type': 'fill',
-'source': 'perumahan',
+'source': 'selatan',
+'layout': {},
+'paint': {
+'fill-color': colorSelatanDefault,
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'timur',
+'type': 'fill',
+'source': 'timur',
+'layout': {},
+'paint': {
+'fill-color': colorTimurDefault,
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'barat',
+'type': 'fill',
+'source': 'barat',
+'layout': {},
+'paint': {
+'fill-color': colorBaratDefault,
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'perumahanMargadana',
+'type': 'fill',
+'source': 'perumahanMargadana',
 'layout': {},
 'paint': {
 'fill-color': '#FF0000',
 'fill-opacity': 0.5
 }
+});
+
+map.addLayer({
+'id': 'perumahanBarat',
+'type': 'fill',
+'source': 'perumahanBarat',
+'layout': {},
+'paint': {
+'fill-color': '#FF0000',
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'perumahanSelatan',
+'type': 'fill',
+'source': 'perumahanSelatan',
+'layout': {},
+'paint': {
+'fill-color': '#FF0000',
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'perumahanTimur',
+'type': 'fill',
+'source': 'perumahanTimur',
+'layout': {},
+'paint': {
+'fill-color': '#FF0000',
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'sawah',
+'type': 'fill',
+'source': 'sawah',
+'layout': {},
+'paint': {
+'fill-color': '#11ff00',
+'fill-opacity': 1
+}
+});
+
+map.on('click', 'maine', function(e) {
+  renderback('Margadana')
+});
+
+var filtered = false;
+function renderback(kecamatan) {
+  if (!filtered) {
+  if (kecamatan === 'Margadana') {
+    map.setLayoutProperty('selatan', 'visibility', 'none');
+  map.setLayoutProperty('perumahanSelatan', 'visibility', 'none');
+  map.setLayoutProperty('barat', 'visibility', 'none');
+  map.setLayoutProperty('perumahanBarat', 'visibility', 'none');
+  map.setLayoutProperty('timur', 'visibility', 'none');
+  map.setLayoutProperty('perumahanTimur', 'visibility', 'none');
+  }else if(kecamatan==='Tegal Barat'){
+    map.setLayoutProperty('maine', 'visibility', 'none');
+  map.setLayoutProperty('perumahanMargadana', 'visibility', 'none');
+  map.setLayoutProperty('selatan', 'visibility', 'none');
+  map.setLayoutProperty('perumahanSelatan', 'visibility', 'none');
+  map.setLayoutProperty('timur', 'visibility', 'none');
+  map.setLayoutProperty('perumahanTimur', 'visibility', 'none');
+  }else if(kecamatan==='Tegal Selatan'){
+    map.setLayoutProperty('maine', 'visibility', 'none');
+  map.setLayoutProperty('perumahanMargadana', 'visibility', 'none');
+  map.setLayoutProperty('barat', 'visibility', 'none');
+  map.setLayoutProperty('perumahanBarat', 'visibility', 'none');
+  map.setLayoutProperty('timur', 'visibility', 'none');
+  map.setLayoutProperty('perumahanTimur', 'visibility', 'none');
+  }else if(kecamatan==='Tegal Timur'){
+    map.setLayoutProperty('maine', 'visibility', 'none');
+  map.setLayoutProperty('perumahanMargadana', 'visibility', 'none');
+  map.setLayoutProperty('barat', 'visibility', 'none');
+  map.setLayoutProperty('perumahanBarat', 'visibility', 'none');
+  map.setLayoutProperty('selatan', 'visibility', 'none');
+  map.setLayoutProperty('perumahanSelatan', 'visibility', 'none');
+  }else{
+    mapRender();
+  }
+
+  const filter = maps.features.filter(f => {
+      return f.properties.kecamatan.includes(kecamatan)
+  });
+  console.log("filter",filter);
+  maps.features = filter;
+
+  map.addSource('perumahancluster', 
+{
+type: 'geojson',
+// Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+data:maps,
+cluster: true,
+clusterMaxZoom: 15, // Max zoom to cluster points on
+clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+}
+);
+
+  map.removeLayer('clusters');
+  map.removeLayer('cluster-count');
+  map.addLayer({
+id: 'clusters',
+type: 'circle',
+source: 'perumahancluster',
+filter: ['has', 'point_count'],
+paint: {
+// Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+// with three steps to implement three types of circles:
+//   * Blue, 20px circles when point count is less than 100
+//   * Yellow, 30px circles when point count is between 100 and 750
+//   * Pink, 40px circles when point count is greater than or equal to 750
+'circle-color': [
+'step',
+['get', 'point_count'],
+'#51bbd6',
+100,
+'#f1f075',
+750,
+'#f28cb1'
+],
+'circle-radius': [
+'step',
+['get', 'point_count'],
+20,
+100,
+30,
+750,
+40
+]
+}
+});
+ 
+map.addLayer({
+id: 'cluster-count',
+type: 'symbol',
+source: 'perumahancluster',
+filter: ['has', 'point_count'],
+layout: {
+'text-field': '{point_count_abbreviated}',
+'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+'text-size': 12
+}
+});
+filtered = true;
+  }
+  // console.log("aaa",filter);
+  // mapRender();
+  
+}
+
+
+map.on('click', 'selatan', function(e) {
+  renderback('Tegal Selatan')
+});
+
+map.on('click', 'barat', function(e) {
+  renderback('Tegal Barat')
+});
+
+map.on('click', 'timur', function(e) {
+  renderback('Tegal Timur');
 });
 
  
@@ -666,6 +852,8 @@ tsunami = 'yes';
 } else {
 tsunami = 'no';
 }
+
+
  
 // Ensure that if the map is zoomed out such that
 // multiple copies of the feature are visible, the
