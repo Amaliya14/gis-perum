@@ -34,7 +34,7 @@ class WelcomeController extends Controller
        // dd($perumahan);
       $kecamatan = Kecamatan::orderBy('kecamatan','ASC')->get();
       $kelurahan = Kelurahan::orderBy('kelurahan','ASC')->get();
-      return view('map-area', compact('kecamatan', 'kelurahan'));
+      return view('map', compact('kecamatan', 'kelurahan'));
     }
 
     public function mapPerumahan(){

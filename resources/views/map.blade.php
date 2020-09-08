@@ -218,7 +218,7 @@
 <script src="{{ asset('frontend/js/leaflet.js')}}"></script>
 <script src="{{ asset('frontend/js/leaflet.markercluster.js')}}"></script>
 <script src="{{ asset('frontend/js/custom.js')}}"></script>
-<!-- <script>
+<script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczMW15eHVlYXBhZW4ifQ.uqVd8rK5Oe49IjUREFnfgw';
   const map = new mapboxgl.Map({
     container: 'map', // container id
@@ -229,16 +229,87 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
 
   
 
-  map.addControl(new mapboxgl.NavigationControl());
+  // map.addControl(new mapboxgl.NavigationControl());
 
   const url = '{{config('app.url')}}';
   const urlMap = '{{url('mapPerumahan')}}';
   const search = document.querySelector('#keyword');
   const kecamatan = document.querySelector('#kecamatan');
+  var hoveredStateId = null;
+    var colorMargadanaDefault = '#FA8072';
+    var colorSelatanDefault = '#FA8072';
+    var colorBaratDefault = '#FA8072';
+    var colorTimurDefault = '#FA8072';
   let markers = [];
+  let perumahan;
 
+  $.ajax({
+            url: "/api/map-perumahan",
+            type: "get",
+            // data:{ 
+            //     _token:'{{ csrf_token() }}'
+            // },
+            cache: false,
+            async: false, 
+            // dataType: 'json',
+            success: function(dataResult){
+                // console.log(dataResult.data);
+                // var dataChat = dataResult.data
+                // dataChat.map(chat=>{
+                //     console.log(chat);
+                // })
+
+                perumahan = dataResult.data;
+                // var bodyData = '';
+                // // var i=1;
+                // $.each(resultData,function(index,row){
+                //     // var editUrl = url+'/'+row.id+"/edit";
+                //     var tanggal = new Date(row.created_at);
+                //     let formatted_date = tanggal.getDate() + "-" + (tanggal.getMonth() + 1) + "-" + tanggal.getFullYear() + " | " + tanggal.getHours() + ":" + tanggal.getMinutes();
+                //     var pengirim;
+                //     if (row.pengirim == 'user') {
+                //         pengirim = 'incoming_message';
+                //         bodyData +="<div class='outgoing_msg'><div class='sent_msg'> <p>"+row.isi_chat+"</p><span class='time_date'>"+formatted_date+"</span> </div></div>"
+                //     }else{
+                //     bodyData+="<div class='incoming_msg'>"
+                //     bodyData+="<div class='incoming_msg_img'> <img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> </div>"
+                //     bodyData+="<div class='received_msg'>"
+                //     bodyData+="<div class='received_withd_msg'>"
+                //     bodyData+="<p>"+row.isi_chat+"</p>"
+                //     bodyData+="<span class='time_date'>" + formatted_date +"</span></div>";
+                //     bodyData+="</div></div>";
+                //     }
+                    
+                    
+                // })
+               
+              
+            }
+
+        });
   async function showToMap(){
-    const perumahan = await fetch(urlMap).then(res => res.json()).then(res => res);
+    // perumahan = await fetch(urlMap).then(res => res.json()).then(res => res);
+
+    const margadanaExist = perumahan.find(p => p.kecamatan === 'Margadana');
+    const baratExist = perumahan.find(p => p.kecamatan === 'Tegal Barat');
+    const selatanExist = perumahan.find(p => p.kecamatan === 'Tegal Selatan');
+    const timurExist = perumahan.find(p => p.kecamatan === 'Tegal Timur');
+    
+    if (margadanaExist) {
+      colorMargadanaDefault = '#00FA9A'; 
+    }
+
+    if (baratExist) {
+      colorBaratDefault = '#00FA9A'; 
+    }
+
+    if (selatanExist) {
+      colorSelatanDefault = '#00FA9A'; 
+    }
+
+    if (timurExist) {
+      colorTimurDefault = '#00FA9A'; 
+    }
 
 
     perumahan.forEach(p => {
@@ -246,8 +317,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
         showMarker(p, marker);
     });
 
-    search.addEventListener('input', function(){
-
+    kecamatan.addEventListener('change', function(){
+      renderback(kecamatan.value)
       if(kecamatan.value === ''){
         const filter = perumahan.filter(f => {
             return f.nama_perumahan.toLowerCase().includes(this.value)
@@ -316,9 +387,226 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
 
 
   showToMap();
-</script> -->
 
-<script>
+  
+  function renderback(kecamatan) {
+      // console.log("clicked",kecamatan);
+    if (kecamatan) {
+      if (kecamatan === 'Margadana') {
+        // console.log("clicked",kecamatan);
+    map.setLayoutProperty('selatan', 'visibility', 'none');
+  map.setLayoutProperty('perumahanSelatan', 'visibility', 'none');
+  map.setLayoutProperty('barat', 'visibility', 'none');
+  map.setLayoutProperty('perumahanBarat', 'visibility', 'none');
+  map.setLayoutProperty('timur', 'visibility', 'none');
+  map.setLayoutProperty('perumahanTimur', 'visibility', 'none');
+  }else if(kecamatan==='Tegal Barat'){
+    map.setLayoutProperty('maine', 'visibility', 'none');
+  map.setLayoutProperty('perumahanMargadana', 'visibility', 'none');
+  map.setLayoutProperty('selatan', 'visibility', 'none');
+  map.setLayoutProperty('perumahanSelatan', 'visibility', 'none');
+  map.setLayoutProperty('timur', 'visibility', 'none');
+  map.setLayoutProperty('perumahanTimur', 'visibility', 'none');
+  }else if(kecamatan==='Tegal Selatan'){
+    map.setLayoutProperty('maine', 'visibility', 'none');
+  map.setLayoutProperty('perumahanMargadana', 'visibility', 'none');
+  map.setLayoutProperty('barat', 'visibility', 'none');
+  map.setLayoutProperty('perumahanBarat', 'visibility', 'none');
+  map.setLayoutProperty('timur', 'visibility', 'none');
+  map.setLayoutProperty('perumahanTimur', 'visibility', 'none');
+  }else if(kecamatan==='Tegal Timur'){
+    map.setLayoutProperty('maine', 'visibility', 'none');
+  map.setLayoutProperty('perumahanMargadana', 'visibility', 'none');
+  map.setLayoutProperty('barat', 'visibility', 'none');
+  map.setLayoutProperty('perumahanBarat', 'visibility', 'none');
+  map.setLayoutProperty('selatan', 'visibility', 'none');
+  map.setLayoutProperty('perumahanSelatan', 'visibility', 'none');
+  }
+        clearMarkers();
+        const filter = perumahan.filter(f => f.kecamatan === kecamatan);
+        filter.forEach(p => {
+          let marker = new mapboxgl.Marker();
+          showMarker(p, marker)
+        })
+  // else{
+  //   mapRender();
+  // }
+    }
+  }
+
+  map.on('load', function() {
+    
+
+    
+
+    map.addSource('maine', {
+    'type': 'geojson',
+    'data': '{{asset('margadana.geojson')}}'
+    });
+
+    map.addSource('selatan', {
+'type': 'geojson',
+'data': '{{asset('selatan.geojson')}}'
+});
+
+map.addSource('barat', {
+'type': 'geojson',
+'data': '{{asset('barat.geojson')}}'
+});
+
+map.addSource('timur', {
+'type': 'geojson',
+'data': '{{asset('timur.geojson')}}'
+});
+
+map.addSource('perumahanSelatan', {
+'type': 'geojson',
+'data': '{{asset('selatan-perumahan.geojson')}}'
+});
+
+map.addSource('perumahanBarat', {
+'type': 'geojson',
+'data': '{{asset('barat-perumahan.geojson')}}'
+});
+
+map.addSource('perumahanTimur', {
+'type': 'geojson',
+'data': '{{asset('timur-perumahan.geojson')}}'
+});
+
+map.addSource('perumahanMargadana', {
+'type': 'geojson',
+'data': '{{asset('margadana-perumahan.geojson')}}'
+});
+
+map.addSource('sawah', {
+'type': 'geojson',
+'data': '{{asset('sawah.geojson')}}'
+});
+
+
+    map.addLayer({
+'id': 'selatan',
+'type': 'fill',
+'source': 'selatan',
+'layout': {},
+'paint': {
+'fill-color': colorSelatanDefault,
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'timur',
+'type': 'fill',
+'source': 'timur',
+'layout': {},
+'paint': {
+'fill-color': colorTimurDefault,
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'barat',
+'type': 'fill',
+'source': 'barat',
+'layout': {},
+'paint': {
+'fill-color': colorBaratDefault,
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'perumahanMargadana',
+'type': 'fill',
+'source': 'perumahanMargadana',
+'layout': {},
+'paint': {
+'fill-color': '#FF0000',
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'perumahanBarat',
+'type': 'fill',
+'source': 'perumahanBarat',
+'layout': {},
+'paint': {
+'fill-color': '#FF0000',
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'perumahanSelatan',
+'type': 'fill',
+'source': 'perumahanSelatan',
+'layout': {},
+'paint': {
+'fill-color': '#FF0000',
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'perumahanTimur',
+'type': 'fill',
+'source': 'perumahanTimur',
+'layout': {},
+'paint': {
+'fill-color': '#FF0000',
+'fill-opacity': 0.5
+}
+});
+
+map.addLayer({
+'id': 'sawah',
+'type': 'fill',
+'source': 'sawah',
+'layout': {},
+'paint': {
+'fill-color': '#11ff00',
+'fill-opacity': 1
+}
+});
+
+    map.addLayer({
+    'id': 'maine',
+    'type': 'fill',
+    'source': 'maine',
+    'layout': {},
+    'paint': {
+    'fill-color': colorMargadanaDefault,
+    'fill-opacity': 0.5
+    }
+    });
+
+  map.on('click', 'maine', function(e) {
+    
+  renderback('Margadana')
+});
+
+  map.on('click', 'selatan', function(e) {
+  renderback('Tegal Selatan')
+});
+
+map.on('click', 'barat', function(e) {
+  renderback('Tegal Barat')
+});
+
+map.on('click', 'timur', function(e) {
+  renderback('Tegal Timur');
+});
+
+  });
+  
+
+</script>
+
+<!-- <script>
 var dataMap = "";
 var maps = {"type": "FeatureCollection",
   "crs": {
@@ -607,6 +895,6 @@ map.getCanvas().style.cursor = '';
     }
   });
 
-</script>
+</script> -->
 
 </body>
