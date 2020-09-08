@@ -134,7 +134,7 @@
                             <dd>{{$perum->luas_lahan_bangunan}} M<sup>2</sup></dd>
                       </dl>
                     <dl>
-                        <dt>Jumlah Rumah</dt>
+                        <dt>Total Rumah</dt>
                             <dd>{{$perum->jumlah_rumah}} Unit</dd>
                         </dl>
                     </div>

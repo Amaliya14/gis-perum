@@ -135,12 +135,12 @@
                       <div class="ts-form-collapse ts-xs-hide-collapse collapse show">
 
                           <!--Keyword-->
-                          <select class="custom-select my-2" id="kelurahan" name="category">
+                         <!--  <select class="custom-select my-2" id="kelurahan" name="category">
                               <option value="">Kelurahan</option>
                               @foreach($kelurahan as $kel)
                               <option value="{{$kel->kelurahan}}">{{$kel->kelurahan}}</option>
                               @endforeach
-                          </select>
+                          </select> -->
 
                           <select class="custom-select my-2" id="kecamatan" name="category">
                               <option value="">Kecamatan</option>

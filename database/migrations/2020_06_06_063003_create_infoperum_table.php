@@ -16,9 +16,10 @@ class CreateInfoperumTable extends Migration
         Schema::create('infoperum', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('id_perumahan')->unsigned();
-            $table->string('tipe'); //membuat kolom nama
-            $table->string('harga'); //membuat kolom email
-            $table->text('keterangan'); //membuat kolom alamat dengan tipe text
+            $table->string('rumah_tersedia'); 
+            $table->string('tipe'); 
+            $table->string('harga'); 
+            $table->text('keterangan'); 
             $table->string('foto');
             $table->timestamps();
 

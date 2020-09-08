@@ -17,6 +17,12 @@
             <input type="text" class="form-control" id="nama_perumahan" name="nama_perumahan">
         </div>
 
+       <div class="input-group">
+          <label for="rumah_tersedia">Rumah Tersedia:</label>
+            <input type="text" class="form-control" id="rumah_tersedia" name="rumah_tersedia" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="basic-addon2">Unit</span>>
+        </div>
+
         <div class="form-group">
           <label for="tipe">Tipe:</label>
             <input type="text" class="form-control" id="tipe" name="tipe">

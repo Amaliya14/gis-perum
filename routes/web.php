@@ -24,7 +24,7 @@ Route::get('data-pengembang','WelcomeController@pengembang')->name('pengembang')
 Route::get('kontak','WelcomeController@kontak');
 Route::get('perumahan/cari','WelcomeController@cari')->name('cari');
 Route::get('chats/{id}','WelcomeController@chats')->name('chats');
-// Auth::routes();
+Auth::routes();
 
 //pengguna
 Route::post('login','User\AuthUserController@login')->name('users.login');
@@ -64,8 +64,6 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::get('perumahan/edit/{id}', 'Admin\PerumahanController@edit')->name('admin.perumahan.edit');
     Route::patch('perumahan/update/{id}','Admin\PerumahanController@update')->name('admin.perumahan.update');
     Route::delete('perumahan/destroy/{id}','Admin\PerumahanController@destroy')->name('admin.perumahan.destroy');
-
-
 });
 
 
