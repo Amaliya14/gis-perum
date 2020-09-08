@@ -167,9 +167,6 @@
                             <td>  Area Perumahan</td>
                           </tr>
                           <tr>
-                            <td><legend style="background-color: coral;"></legend></td>
-                            <td>  Area Pemukiman</td>
-                          </tr>
                           </table>
                           </div>
                           <!-- <div class="form-group mt-2 mb-3">
