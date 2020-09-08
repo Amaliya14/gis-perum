@@ -14,7 +14,13 @@
   <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
 
     <title>GIS-PERUM</title>
-
+    <style>
+  legend {
+  color: white;
+  padding: 10px 10px;
+  width : 5px;
+}
+</style>
 </head>
 
 <body>
@@ -151,6 +157,25 @@
                            
                           <div class="form-group my-2">
                               <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Nama Perumahan">
+                          </div>
+
+                          <br>
+                          <div>Legend : 
+                          <table>
+                          <tr>
+                            <td><legend style="background-color: #11ff00;"></legend></td>
+                            <td>  Sawah</td>
+                          </tr>
+                          <tr>
+                            <td><legend style="background-color: lightblue;"></legend></td>
+                            <td>  Sungai / Perairan</td>
+                          </tr>
+                          <tr>
+                            <td><legend style="background-color: red;"></legend></td>
+                            <td>  Area Perumahan</td>
+                          </tr>
+                          <tr>
+                          </table>
                           </div>
                           <!-- <div class="form-group mt-2 mb-3">
                               <button type="submit" class="btn btn-primary w-100" id="search-btn">Search</button>
