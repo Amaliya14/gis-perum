@@ -20,6 +20,7 @@
   padding: 10px 10px;
   width : 5px;
 }
+
 </style>
 </head>
 
@@ -252,6 +253,15 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
     zoom: 12 // starting zoom
   });
 
+  var maps = {"type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  }
+  };
+
   
 
   // map.addControl(new mapboxgl.NavigationControl());
@@ -267,7 +277,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
     var colorTimurDefault = '#FA8072';
   let markers = [];
   let perumahan;
-
   $.ajax({
             url: "/api/map-perumahan",
             type: "get",
@@ -284,7 +293,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
                 //     console.log(chat);
                 // })
 
-                perumahan = dataResult.data;
+                var resultData = dataResult.data;
+                perumahan = resultData;
                 // var bodyData = '';
                 // // var i=1;
                 // $.each(resultData,function(index,row){
@@ -312,6 +322,38 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
             }
 
         });
+
+    var dataFeatures = [];
+    // $.each(dataMap,function(index,row){
+    //   var features = {};
+    //   features.type = "Feature";   
+    //   // features.properties = {};
+    //   features.properties.id = row.id 
+                    
+                    
+    // });
+    // dataMap.map(row => {
+    //   var features = {};
+    //   features.type = "Feature";   
+    //   features.properties = {};
+    //   features.properties.id = row.id 
+    //   features.properties.iconSize = [60, 60] 
+    //   features.properties.foto = row.info.foto 
+    //   features.properties.nama_perumahan = row.nama_perumahan 
+    //   features.properties.kecamatan = row.kecamatan 
+    //   features.properties.lokasi = row.lokasi 
+    //   features.geometry={}
+    //   features.geometry.type = "point"
+      
+    //   features.geometry.coordinates = [row.longitude,row.latitude]
+
+
+    //   dataFeatures.push(features)
+    // });
+
+    // maps.features = dataFeatures;
+    // console.log("aaaa",maps);
+
   async function showToMap(){
     // perumahan = await fetch(urlMap).then(res => res.json()).then(res => res);
 
@@ -338,9 +380,12 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
 
 
     perumahan.forEach(p => {
-      let marker = new mapboxgl.Marker();
+      let marker = new mapboxgl.Marker({
+        zIndexOffset : 10
+      });
         showMarker(p, marker);
     });
+    let clickCoords = {};
 
     kecamatan.addEventListener('change', function(){
       renderback(kecamatan.value)
@@ -362,10 +407,26 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
         })
       }
 
+      
+
+    })
+
+
+    search.addEventListener('keypress', function(){
+        const filter = perumahan.filter(f => {
+            return f.nama_perumahan.toLowerCase().includes(this.value)
+        });
+        clearMarkers();
+        filter.forEach(p => {
+          let marker = new mapboxgl.Marker();
+          showMarker(p, marker)
+        })
+      
     })
 
   kecamatan.addEventListener('click', function(){
     // alert(this.value)
+    
     if(this.value !== ''){
       const filter = perumahan.filter(f => {
         if(f.info !== null){
@@ -405,7 +466,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
     <div class="text-center"><a href="info-perumahan/${p.id}"><strong>${p.nama_perumahan}</strong></a>
     <p class="text-dark">${p.lokasi}</p></div>`);
 
-    marker.setLngLat({lng: p.longitude, lat: p.latitude}).setPopup(popup).addTo(map);
+    marker.setLngLat({lng: p.longitude, lat: p.latitude},4).setPopup(popup).addTo(map);
 
     markers.push(marker)
   }
@@ -419,12 +480,15 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
     if (kecamatan) {
       if (kecamatan === 'Margadana') {
         // console.log("clicked",kecamatan);
-    map.setLayoutProperty('selatan', 'visibility', 'none');
+  map.setLayoutProperty('selatan', 'visibility', 'none');
   map.setLayoutProperty('perumahanSelatan', 'visibility', 'none');
   map.setLayoutProperty('barat', 'visibility', 'none');
   map.setLayoutProperty('perumahanBarat', 'visibility', 'none');
   map.setLayoutProperty('timur', 'visibility', 'none');
   map.setLayoutProperty('perumahanTimur', 'visibility', 'none');
+  
+  map.setLayoutProperty('maine', 'visibility', 'visible');
+  map.setLayoutProperty('perumahanMargadana', 'visibility', 'visible');
   }else if(kecamatan==='Tegal Barat'){
     map.setLayoutProperty('maine', 'visibility', 'none');
   map.setLayoutProperty('perumahanMargadana', 'visibility', 'none');
@@ -432,6 +496,9 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
   map.setLayoutProperty('perumahanSelatan', 'visibility', 'none');
   map.setLayoutProperty('timur', 'visibility', 'none');
   map.setLayoutProperty('perumahanTimur', 'visibility', 'none');
+
+  map.setLayoutProperty('barat', 'visibility', 'visible');
+  map.setLayoutProperty('perumahanBarat', 'visibility', 'visible');
   }else if(kecamatan==='Tegal Selatan'){
     map.setLayoutProperty('maine', 'visibility', 'none');
   map.setLayoutProperty('perumahanMargadana', 'visibility', 'none');
@@ -439,6 +506,9 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
   map.setLayoutProperty('perumahanBarat', 'visibility', 'none');
   map.setLayoutProperty('timur', 'visibility', 'none');
   map.setLayoutProperty('perumahanTimur', 'visibility', 'none');
+
+  map.setLayoutProperty('selatan', 'visibility', 'visible');
+  map.setLayoutProperty('perumahanSelatan', 'visibility', 'visible');
   }else if(kecamatan==='Tegal Timur'){
     map.setLayoutProperty('maine', 'visibility', 'none');
   map.setLayoutProperty('perumahanMargadana', 'visibility', 'none');
@@ -446,9 +516,22 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
   map.setLayoutProperty('perumahanBarat', 'visibility', 'none');
   map.setLayoutProperty('selatan', 'visibility', 'none');
   map.setLayoutProperty('perumahanSelatan', 'visibility', 'none');
+
+  map.setLayoutProperty('timur', 'visibility', 'visible');
+  map.setLayoutProperty('perumahanTimur', 'visibility', 'visible');
+  }else{
+    map.setLayoutProperty('maine', 'visibility', 'none');
+  map.setLayoutProperty('perumahanMargadana', 'visibility', 'none');
+  map.setLayoutProperty('barat', 'visibility', 'none');
+  map.setLayoutProperty('perumahanBarat', 'visibility', 'none');
+  map.setLayoutProperty('selatan', 'visibility', 'none');
+  map.setLayoutProperty('perumahanSelatan', 'visibility', 'none');
+
+
   }
         clearMarkers();
         const filter = perumahan.filter(f => f.kecamatan === kecamatan);
+        
         filter.forEach(p => {
           let marker = new mapboxgl.Marker();
           showMarker(p, marker)
@@ -460,9 +543,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
   }
 
   map.on('load', function() {
-    
+   
 
-    
 
     map.addSource('maine', {
     'type': 'geojson',
@@ -609,22 +691,24 @@ map.addLayer({
     }
     });
 
-  map.on('click', 'maine', function(e) {
+//   map.on('click', 'maine', function(e) {
     
-  renderback('Margadana')
-});
+//   renderback('Margadana')
+// });
 
-  map.on('click', 'selatan', function(e) {
-  renderback('Tegal Selatan')
-});
+//   map.on('click', 'selatan', function(e) {
+//   renderback('Tegal Selatan')
+// });
 
-map.on('click', 'barat', function(e) {
-  renderback('Tegal Barat')
-});
+// map.on('click', 'barat', function(e) {
+//   renderback('Tegal Barat')
+// });
 
-map.on('click', 'timur', function(e) {
-  renderback('Tegal Timur');
-});
+// map.on('click', 'timur', function(e) {
+//   renderback('Tegal Timur');
+// });
+
+
 
   });
   
