@@ -520,12 +520,12 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
   map.setLayoutProperty('timur', 'visibility', 'visible');
   map.setLayoutProperty('perumahanTimur', 'visibility', 'visible');
   }else{
-    map.setLayoutProperty('maine', 'visibility', 'none');
-  map.setLayoutProperty('perumahanMargadana', 'visibility', 'none');
-  map.setLayoutProperty('barat', 'visibility', 'none');
-  map.setLayoutProperty('perumahanBarat', 'visibility', 'none');
-  map.setLayoutProperty('selatan', 'visibility', 'none');
-  map.setLayoutProperty('perumahanSelatan', 'visibility', 'none');
+    map.setLayoutProperty('maine', 'visibility', 'visible');
+  map.setLayoutProperty('perumahanMargadana', 'visibility', 'visible');
+  map.setLayoutProperty('barat', 'visibility', 'visible');
+  map.setLayoutProperty('perumahanBarat', 'visibility', 'visible');
+  map.setLayoutProperty('selatan', 'visibility', 'visible');
+  map.setLayoutProperty('perumahanSelatan', 'visibility', 'visible');
 
 
   }
@@ -539,7 +539,18 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaXNuYS1hbWFsaXlhIiwiYSI6ImNrYmkyZ2tlMDBiMjczM
   // else{
   //   mapRender();
   // }
-    }
+    }else{
+    map.setLayoutProperty('maine', 'visibility', 'visible');
+  map.setLayoutProperty('perumahanMargadana', 'visibility', 'visible');
+  map.setLayoutProperty('barat', 'visibility', 'visible');
+  map.setLayoutProperty('perumahanBarat', 'visibility', 'visible');
+  map.setLayoutProperty('selatan', 'visibility', 'visible');
+  map.setLayoutProperty('perumahanSelatan', 'visibility', 'visible');
+  map.setLayoutProperty('timur', 'visibility', 'visible');
+  map.setLayoutProperty('perumahanTimur', 'visibility', 'visible');
+
+
+  }
   }
 
   map.on('load', function() {
